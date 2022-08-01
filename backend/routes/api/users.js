@@ -10,6 +10,12 @@ const router = express.Router();
 
 //this makes sure no invalid users can be created
 const validateSignup = [
+    check('firstName')
+      .exists({ checkFalsy: true })
+      .withMessage('First Name is required.'),
+    check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage('Last Name is required.'),
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
@@ -33,8 +39,8 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-      const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+      const { firstName, lastName, email, password, username } = req.body;
+      const user = await User.signup({ firstName, lastName, email, username, password });
 
       await setTokenCookie(res, user);
 
