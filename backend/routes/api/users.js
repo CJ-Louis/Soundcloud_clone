@@ -58,12 +58,6 @@ router.post(
         }
       })
 
-      // console.log("This is the email checker" + uniqueEmail + (uniqueEmail === false))
-      // console.log("This is the username checker" + uniqueUser)
-      // if (uniqueEmail){
-      //   console.log('here I am')
-      // }
-
       if (uniqueEmail == false && uniqueUser == false){
         const user = await User.signup({ firstName, lastName, email, username, password });
 
