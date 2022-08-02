@@ -53,7 +53,8 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // define association here
+      User.hasMany(models.Song, { foreignKey: 'userId'}),
+      User.hasMany(models.Album, { foreignKey: 'userId'})
     }
   }
   User.init({
