@@ -11,11 +11,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     return queryInterface.bulkInsert('Albums', [
+    return queryInterface.bulkInsert('Songs', [
       {
         userId: 1,
-        title: 'Redundent',
-        description: 'Albums are just a construct to sell meh songs with single good one',
+        albumId: 1,
+        title: 'Tomorrow',
+        description: 'A song about the future',
+        url: 'www.cjrocks.com',
         imageUrl: 'www.nohedoesnt.org',
       },
       // {
@@ -36,8 +38,8 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Albums', {
-      title: { [Op.in]: ['Redundent']}
+    await queryInterface.bulkDelete('Songs', {
+      title: { [Op.in]: ['Tomorrow']}
     }, {});
   }
 };
