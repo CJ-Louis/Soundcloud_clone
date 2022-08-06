@@ -86,6 +86,8 @@ router.put('/:songId', async (req, res, next) => {
     if (imageUrl) song.imageUrl = imageUrl
     if (albumId) song.albumId = albumId
 
+    await song.save()
+
     return res.json({
         song
     })
@@ -93,5 +95,8 @@ router.put('/:songId', async (req, res, next) => {
 
 })
 
+router.delete('/:songId', async (req, res, next) => {
+
+})
 
 module.exports = router;
