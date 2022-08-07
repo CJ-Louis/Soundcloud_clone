@@ -17,5 +17,20 @@ router.get('/', async(req, res, next) => {
     })
 })
 
+router.post('/', async(req, res, next) => {
+    const albums = await Album.findAll()
+
+    return res.json({
+        albums
+    })
+})
+
+router.get('/current', async(req, res, next) => {
+    const albums = await Album.findAll()
+
+    return res.json({
+        albums
+    })
+})
 
 module.exports = router;

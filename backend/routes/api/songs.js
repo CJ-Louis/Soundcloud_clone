@@ -51,7 +51,7 @@ router.get('/current', restoreUser, async (req, res) => {
         where: {id: user.id}
     });
 
-      if (user) {
+      if (userSongs[0]) {
         return res.json({
           songs: userSongs
         });
