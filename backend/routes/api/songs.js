@@ -41,16 +41,6 @@ router.post('/', requireAuth, async(req, res) => {
 })
 
 
-router.get('/:songId', async(req, res, next) => {
-    const id = req.params.songId
-    const song = await Song.findByPk(id)
-
-    return res.json({
-        song
-    })
-})
-
-
 router.get('/current', restoreUser, async (req, res) => {
       const { user } = req;
 
@@ -68,6 +58,18 @@ router.get('/current', restoreUser, async (req, res) => {
       } else return res.json({songs: "You currently have no songs produced"});
     }
 );
+
+router.get('/:songId', async(req, res, next) => {
+    const id = req.params.songId
+    const song = await Song.findByPk(id)
+
+    return res.json({
+        song
+    })
+})
+
+
+
 
 
 router.put('/:songId', async (req, res, next) => {
