@@ -31,7 +31,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
      return queryInterface.bulkDelete('PlaylistSongs', {
-      userId: 1
+      palylistId: 1
      }, {});
   }
 };
