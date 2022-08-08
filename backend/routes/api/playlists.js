@@ -8,7 +8,14 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-router.post('/', requireAuth, async (req, res) => {
+const validatePlaylist = [
+    check('name')
+      .notEmpty()
+      .withMessage('Playlist name is required.'),
+    handleValidationErrors
+  ];
+
+router.post('/', requireAuth, validatePlaylist, async (req, res) => {
     const { name, imageUrl } = req.body;
 
     const {user} = req;
@@ -20,7 +27,7 @@ router.post('/', requireAuth, async (req, res) => {
         imageUrl,
     })
 
-    return res.json({
+    return res.status(201).json({
         playlist
       });
 })
@@ -51,7 +58,7 @@ router.get('/current', restoreUser, async (req, res) => {
   }
 );
 
-router.post('/:playlistId/songs', requireAuth, async(req, res) => {
+router.post('/:playlistId/songs', requireAuth, validatePlaylist, async(req, res) => {
     const { user } = req;
     let playlistId = req.params.playlistId
     const { songId } = req.body
@@ -85,7 +92,7 @@ router.post('/:playlistId/songs', requireAuth, async(req, res) => {
         songId
     })
 
-    res.json({
+    res.status(201).json({
         playlistSong: {
             id: playlistSong.id,
             playlistId: playlistSong.playlistId,
@@ -147,7 +154,35 @@ router.put('/:playlistId', async (req, res, next) => {
 
 })
 
+router.delete('/:playlistId', async (req, res, next) => {
 
+    const playlistId = req.params.playlistId
+    const playlist = await Playlist.findByPk(playlistId)
+
+
+
+    if (playlist){
+        await playlist.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Playlist could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Playlist.findByPk(req.params.playlistId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
+
+
+
+
+})
 
 
 module.exports = router;

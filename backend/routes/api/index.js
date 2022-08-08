@@ -8,6 +8,7 @@ const songsRouter = require('./songs.js');
 const albumsRouter = require('./albums.js');
 const playlistsRouter = require('./playlists.js');
 const commentsRouter = require('./comments.js');
+const artistsRouter = require('./artists.js');
 
 const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
@@ -30,6 +31,8 @@ router.use('/albums', albumsRouter);
 router.use('/playlists', playlistsRouter);
 
 router.use('/comments', commentsRouter);
+
+router.use('/artists', artistsRouter);
 
 // backend/routes/api/index.js
 // ...

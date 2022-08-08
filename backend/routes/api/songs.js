@@ -2,28 +2,134 @@ const express = require('express')
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Song, Album, User, Comment } = require('../../db/models');
-
+const { Op } = require("sequelize");
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { query } = require('express');
 
 const router = express.Router();
 
 
+const validateQuery = [
+    check('page')
+      .isLength({ min: 0 })
+      .withMessage('Page must be greater than or equal to 0.'),
+    check('page')
+      .isLength({ max: 10 })
+      .withMessage('Page must be less than or equal to 10.'),
+    check('size')
+      .isLength({ min: 0 })
+      .withMessage('Size must be greater than or equal to 0.'),
+    check('size')
+      .isLength({ max: 20 })
+      .withMessage('Size must be less than or equal to 20.'),
+    handleValidationErrors
+  ];
+  const validateSong = [
+    check('title')
+      .notEmpty()
+      .withMessage('Song title is required.'),
+    check('url')
+      .notEmpty()
+      .withMessage('Audio is required.'),
+    handleValidationErrors
+  ];
 
-router.get('/', async(req, res, next) => {
-    const songs = await Song.findAll()
+  const validateComment = [
+    check('body')
+      .notEmpty()
+      .withMessage('Comment body text is required.'),
+    handleValidationErrors
+  ];
+
+router.get('/', validateQuery, async(req, res, next) => {
+
+    let errorResult = { errors: [], count: 0, pageCount: 0 };
+
+    let { page, size, title, createdAt } = req.query;
+
+    if (!page || isNaN(page)){
+        page = 1;
+        errorResult.errors.push({message: 'Requires valid page and size params'})
+    }
+    if (!size || isNaN(size)){
+        size = 20;
+        errorResult.errors.push({message: 'Requires valid page and size params'})
+    }
+
+    page = Number(page);
+    size = Number(size);
+
+    let pagination = {}
+    if (page >= 1 || size >= 1) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
+    }
+
+
+
+    const where = {};
+
+    if(title){
+        const titleCheck = await Song.findOne({
+            where: {title}
+        })
+        if (!titleCheck){
+            res.status(400).json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    title: "Title is invalid"
+                }
+            })
+        }
+        where.title = {[Op.like]: '%'+ title + '%'};
+    }
+    if(createdAt){
+        const createdCheck = await Song.findOne({
+            where: {createdAt}
+        })
+        if (!createdCheck){
+            res.status(400).json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    createdAt: "CreatedAt is invalid"
+                }
+            })
+        }
+        where.createdAt = {[Op.like]: createdAt};
+    }
+
+    const songs = await Song.findAll({
+        ...pagination,
+        where: {...where}
+    })
 
     return res.json({
-        songs
+        songs,
+        page: page,
+        size: size
+
     })
 })
 
-router.post('/', requireAuth, async(req, res) => {
+router.post('/', requireAuth, validateSong ,async(req, res) => {
 
 
     const { title, description, url, imageUrl, albumId } = req.body;
 
     const {user} = req;
+
+    if (albumId){
+        const album = await Album.findByPk(albumId)
+        if (!album){
+            res.status(404).json({
+                message: "Album couldn't be found",
+                statusCode: 404
+              })
+        }
+    }
 
 
     const song = await Song.create({
@@ -35,12 +141,12 @@ router.post('/', requireAuth, async(req, res) => {
         imageUrl,
     })
 
-    return res.json({
+    return res.status(201).json({
         song
       });
 })
 
-router.get('/current', restoreUser, async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
       const { user } = req;
 
       const userSongs = await User.findOne({
@@ -91,7 +197,7 @@ router.get('/:songId', async(req, res, next) => {
 
 
 
-router.put('/:songId', async (req, res, next) => {
+router.put('/:songId', requireAuth, validateSong ,async (req, res, next) => {
     const { user } = req
     const { title, description, url, imageUrl, albumId } =req.body
 
@@ -123,7 +229,33 @@ router.put('/:songId', async (req, res, next) => {
 
 })
 
-router.delete('/:songId', async (req, res, next) => {
+router.delete('/:songId', requireAuth, async (req, res, next) => {
+
+    const songId = req.params.songId
+    const song = await Song.findByPk(songId)
+
+
+
+    if (song){
+        await song.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Song could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Song.findByPk(req.params.songId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
+
+
+
 
 })
 
@@ -149,7 +281,7 @@ router.get('/:songId/comments', async(req, res) =>{
 })
 
 
-router.post('/:songId/comments', requireAuth, async(req, res) => {
+router.post('/:songId/comments', requireAuth, validateComment, async(req, res) => {
 
 
     const { body } = req.body;
@@ -172,7 +304,7 @@ router.post('/:songId/comments', requireAuth, async(req, res) => {
         body
     })
 
-    return res.json({
+    return res.status(201).json({
         comment
       });
 })

@@ -9,6 +9,13 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+const validateAlbum = [
+    check('title')
+      .notEmpty()
+      .withMessage('Album title is required.'),
+    handleValidationErrors
+  ];
+
 router.get('/', async(req, res, next) => {
     const albums = await Album.findAll()
 
@@ -17,7 +24,7 @@ router.get('/', async(req, res, next) => {
     })
 })
 
-router.post('/', async(req, res, next) => {
+router.post('/', requireAuth, validateAlbum, async(req, res, next) => {
     const { title, description, imageUrl } = req.body;
 
     const {user} = req;
@@ -95,6 +102,32 @@ router.put('/:albumId', requireAuth, async (req, res, next) => {
     return res.json({
         album
     })
+
+
+})
+
+router.delete('/:albumId', async (req, res, next) => {
+
+    const albumId = req.params.albumId
+    const album = await Album.findByPk(albumId)
+
+    if (album){
+        await album.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Album could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Album.findByPk(req.params.albumId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
 
 
 })
