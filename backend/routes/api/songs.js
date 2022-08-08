@@ -63,6 +63,13 @@ router.get('/:songId', async(req, res, next) => {
     const id = req.params.songId
     const song = await Song.findByPk(id)
 
+    if (!song){
+        res.status(404).json({
+            message: "Song couldn't be found",
+            statusCode: 404
+          })
+    }
+
     return res.json({
         song
     })
@@ -78,6 +85,13 @@ router.put('/:songId', async (req, res, next) => {
 
     const id = req.params.songId
     const song = await Song.findByPk(id)
+
+    if (!song){
+        res.status(404).json({
+            message: "Song couldn't be found",
+            statusCode: 404
+          })
+    }
 
     if (song.userId !== user.id){
         throw new Error ("You do not have permission to edit this song's features")

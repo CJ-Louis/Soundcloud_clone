@@ -56,9 +56,11 @@ router.get('/current', requireAuth, restoreUser, async (req, res) => {
 router.get('/:albumId', async(req, res, next) => {
     const id = req.params.albumId
     const album = await Album.findByPk(id)
-    if (!album){
-        res.status(404)
-        throw new Error ("This album does not exist")
+    if (!album) {
+        res.status(404).json({
+            message: "Album couldn't be found",
+            statusCode: 404
+        })
     }
     return res.json({
         album
@@ -75,7 +77,10 @@ router.put('/:albumId', requireAuth, async (req, res, next) => {
     const album = await Album.findByPk(id)
 
     if (!album) {
-        throw new Error ("Album couldn't be found")
+        res.status(404).json({
+            message: "Album couldn't be found",
+            statusCode: 404
+        })
     }
 
     if (album.userId !== user.id){
