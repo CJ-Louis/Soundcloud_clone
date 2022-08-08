@@ -6,6 +6,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const songsRouter = require('./songs.js');
 const albumsRouter = require('./albums.js');
+const playlistsRouter = require('./playlists.js');
 
 const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
@@ -24,6 +25,8 @@ router.use('/users', usersRouter);
 router.use('/songs', songsRouter);
 
 router.use('/albums', albumsRouter);
+
+router.use('/playlists', playlistsRouter);
 
 // backend/routes/api/index.js
 // ...

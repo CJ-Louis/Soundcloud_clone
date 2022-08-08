@@ -20,6 +20,14 @@ module.exports = {
         url: 'www.cjrocks.com',
         imageUrl: 'www.nohedoesnt.org',
       },
+      {
+        userId: 1,
+        albumId: 1,
+        title: 'Yesterday',
+        description: 'A song about the past',
+        url: 'www.cjrocks.com',
+        imageUrl: 'www.nohedoesnt.org',
+      },
       // {
       //   userId: 1,
       //   title: 'Albumless',
@@ -39,7 +47,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('Songs', {
-      title: { [Op.in]: ['Tomorrow']}
+      title: { [Op.in]: ['Tomorrow', 'Yesterday']}
     }, {});
   }
 };
