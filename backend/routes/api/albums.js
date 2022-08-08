@@ -9,6 +9,13 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+const validateAlbum = [
+    check('title')
+      .notEmpty()
+      .withMessage('Album title is required.'),
+    handleValidationErrors
+  ];
+
 router.get('/', async(req, res, next) => {
     const albums = await Album.findAll()
 
@@ -17,7 +24,7 @@ router.get('/', async(req, res, next) => {
     })
 })
 
-router.post('/', async(req, res, next) => {
+router.post('/', requireAuth, validateAlbum, async(req, res, next) => {
     const { title, description, imageUrl } = req.body;
 
     const {user} = req;
