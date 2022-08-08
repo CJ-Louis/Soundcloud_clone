@@ -99,4 +99,30 @@ router.put('/:albumId', requireAuth, async (req, res, next) => {
 
 })
 
+router.delete('/:albumId', async (req, res, next) => {
+
+    const albumId = req.params.albumId
+    const album = await Album.findByPk(albumId)
+
+    if (album){
+        await album.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Album could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Album.findByPk(req.params.albumId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
+
+
+})
+
 module.exports = router;

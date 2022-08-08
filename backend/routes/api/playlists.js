@@ -147,7 +147,35 @@ router.put('/:playlistId', async (req, res, next) => {
 
 })
 
+router.delete('/:playlistId', async (req, res, next) => {
 
+    const playlistId = req.params.playlistId
+    const playlist = await Playlist.findByPk(playlistId)
+
+
+
+    if (playlist){
+        await playlist.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Playlist could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Playlist.findByPk(req.params.playlistId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
+
+
+
+
+})
 
 
 module.exports = router;

@@ -11,10 +11,38 @@ const router = express.Router();
 
 
 router.get('/', async(req, res, next) => {
-    const songs = await Song.findAll()
+
+    let errorResult = { errors: [], count: 0, pageCount: 0 };
+
+    let { page, size } = req.query;
+
+    if (!page || isNaN(page)){
+        page = 1;
+        errorResult.errors.push({message: 'Requires valid page and size params'})
+    }
+    if (!size || isNaN(size)){
+        size = 20;
+        errorResult.errors.push({message: 'Requires valid page and size params'})
+    }
+
+    page = Number(page);
+    size = Number(size);
+
+    let pagination = {}
+    if (page >= 1 || size >= 1) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
+    }
+
+    const songs = await Song.findAll({
+        ...pagination
+    })
 
     return res.json({
-        songs
+        songs,
+        page: page,
+        size: size
+
     })
 })
 
@@ -112,6 +140,32 @@ router.put('/:songId', async (req, res, next) => {
 })
 
 router.delete('/:songId', async (req, res, next) => {
+
+    const songId = req.params.songId
+    const song = await Song.findByPk(songId)
+
+
+
+    if (song){
+        await song.destroy()
+    } else {
+        return res.status(404).json({
+            message: `Song could not be found`,
+            statusCode: 404
+        })
+
+    }
+
+    deleted = await Song.findByPk(req.params.songId)
+    if (!deleted){
+        return res.json({
+            message: `Successfully deleted`,
+            statusCode: 200
+        });
+    }
+
+
+
 
 })
 

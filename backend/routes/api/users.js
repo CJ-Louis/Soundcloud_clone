@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Album, Song, Playlist } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -88,5 +88,90 @@ router.post(
     }
   );
 
+
+  router.get('/:userId', async (req, res) => {
+    const userId = req.params.userId
+    const user = await User.findOne({
+      where: {id: userId},
+      attributes: ['id', 'username']
+    })
+
+    if (!user){
+      res.status(404).json({
+        message: "Artist couldn't be found",
+        statusCode: 404
+      })
+    }
+
+    const songCount = await Song.findAndCountAll({
+      where: { userId }
+    })
+    const albumCount = await Album.findAndCountAll({
+      where: { userId }
+    })
+
+    return res.json({
+      user: {
+        id: user.id,
+        username: user.username,
+        totalSongs: songCount.count,
+        totalAlbums: albumCount.count,
+        imgUrl: albumCount.rows[0].imageUrl
+      }
+
+    });
+
+  })
+
+  router.get('/:userId/songs', async (req, res) => {
+    const userId = req.params.userId
+    const user = await User.findOne({
+      include: [{
+        model: Song,
+        attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'imageUrl']
+    }],
+      attributes: ['id', 'username'],
+      where: {id: userId}
+    })
+
+    if (!user){
+      res.status(404).json({
+        message: "Artists song couldn't be found",
+        statusCode: 404
+      })
+    }
+
+
+
+    return res.json({
+      user
+    });
+
+  })
+
+  router.get('/:userId/playlists', async (req, res) => {
+    const userId = req.params.userId
+    const user = await User.findOne({
+      include: [{
+        model: Playlist
+    }],
+      attributes: ['id', 'username'],
+      where: {id: userId}
+    })
+
+    if (!user){
+      res.status(404).json({
+        message: "Artists playlist couldn't be found",
+        statusCode: 404
+      })
+    }
+
+
+
+    return res.json({
+      user
+    });
+
+  })
 
 module.exports = router;
