@@ -15,6 +15,16 @@ const validatePlaylist = [
     handleValidationErrors
   ];
 
+  const validatePlaylistSong = [
+    check('playlistId')
+      .notEmpty()
+      .withMessage('Playlist id is required.'),
+    check('songId')
+      .notEmpty()
+      .withMessage('Song id is required.'),
+    handleValidationErrors
+  ];
+
 router.post('/', requireAuth, validatePlaylist, async (req, res) => {
     const { name, imageUrl } = req.body;
 
@@ -58,7 +68,7 @@ router.get('/current', restoreUser, async (req, res) => {
   }
 );
 
-router.post('/:playlistId/songs', requireAuth, async(req, res) => {
+router.post('/:playlistId/songs', requireAuth, validatePlaylistSong, async(req, res) => {
     const { user } = req;
     let playlistId = req.params.playlistId
     const { songId } = req.body
@@ -88,16 +98,12 @@ router.post('/:playlistId/songs', requireAuth, async(req, res) => {
     }
     playlistId = parseInt(playlistId)
     const playlistSong = await PlaylistSong.create({
-        playlistId,
-        songId
+        PlaylistId: playlistId,
+        SongId: songId
     })
 
     res.status(201).json({
-        playlistSong: {
-            id: playlistSong.id,
-            playlistId: playlistSong.playlistId,
-            songId: playlistSong.songId,
-        }
+        playlistSong
     })
 
 
