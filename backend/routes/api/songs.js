@@ -40,6 +40,24 @@ router.post('/', requireAuth, async(req, res) => {
       });
 })
 
+router.get('/current', restoreUser, async (req, res) => {
+      const { user } = req;
+
+      const userSongs = await User.findOne({
+        include: [{
+            model: Song,
+        }],
+        where: {id: user.id}
+    });
+
+      if (userSongs.Songs) {
+        return res.json({
+          songs: userSongs.Songs
+        });
+      } else return res.json({songs: "You currently have no songs produced"});
+    }
+);
+
 
 router.get('/:songId', async(req, res, next) => {
     const id = req.params.songId
@@ -51,23 +69,7 @@ router.get('/:songId', async(req, res, next) => {
 })
 
 
-router.get('/current', restoreUser, async (req, res) => {
-      const { user } = req;
 
-      const userSongs = await User.findOne({
-        include: [{
-            model: Song,
-        }],
-        where: {id: user.id}
-    });
-
-      if (user) {
-        return res.json({
-          songs: userSongs
-        });
-      } else return res.json({songs: "You currently have no songs produced"});
-    }
-);
 
 
 router.put('/:songId', async (req, res, next) => {
