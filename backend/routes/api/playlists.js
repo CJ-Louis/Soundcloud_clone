@@ -43,7 +43,7 @@ router.post('/', requireAuth, validatePlaylist, async (req, res) => {
 })
 
 
-router.get('/current', restoreUser, async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
     const { user } = req;
 
     const userPlaylists = await User.findOne({
@@ -131,7 +131,7 @@ router.get('/:playlistId', async(req, res, next) => {
 })
 
 
-router.put('/:playlistId', async (req, res, next) => {
+router.put('/:playlistId', requireAuth, async (req, res, next) => {
     const { user } = req
     const { name, imageUrl } =req.body
 
@@ -160,7 +160,7 @@ router.put('/:playlistId', async (req, res, next) => {
 
 })
 
-router.delete('/:playlistId', async (req, res, next) => {
+router.delete('/:playlistId', requireAuth, async (req, res, next) => {
 
     const playlistId = req.params.playlistId
     const playlist = await Playlist.findByPk(playlistId)

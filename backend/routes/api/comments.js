@@ -42,7 +42,7 @@ router.put('/:commentId', requireAuth, async (req, res) => {
 
 })
 
-router.delete('/:commentId', async (req, res, next) => {
+router.delete('/:commentId', requireAuth, async (req, res, next) => {
 
     const commentId = req.params.commentId
     const comment = await Comment.findByPk(commentId)
