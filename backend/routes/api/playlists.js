@@ -58,7 +58,7 @@ router.get('/current', restoreUser, async (req, res) => {
   }
 );
 
-router.post('/:playlistId/songs', requireAuth, validatePlaylist, async(req, res) => {
+router.post('/:playlistId/songs', requireAuth, async(req, res) => {
     const { user } = req;
     let playlistId = req.params.playlistId
     const { songId } = req.body
