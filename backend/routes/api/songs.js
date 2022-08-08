@@ -288,7 +288,8 @@ router.post('/:songId/comments', requireAuth, validateComment, async(req, res) =
 
     const {user} = req;
 
-    const id = req.params.songId
+    let id = req.params.songId
+    id = parseInt(id)
     const song = await Song.findByPk(id)
 
     if (!song){
