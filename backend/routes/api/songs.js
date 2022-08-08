@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { Song, Album, User } = require('../../db/models');
+const { Song, Album, User, Comment } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -114,5 +114,57 @@ router.put('/:songId', async (req, res, next) => {
 router.delete('/:songId', async (req, res, next) => {
 
 })
+
+router.get('/:songId/comments', async(req, res) =>{
+
+    const id = req.params.songId
+    const song = await Song.findByPk(id)
+
+    if (!song){
+        res.status(404).json({
+            message: "Song couldn't be found",
+            statusCode: 404
+          })
+    }
+
+    const comments = await Comment.findAll({
+        where: {songId: id}
+    })
+
+    return res.json({
+        comments
+    })
+})
+
+
+router.post('/:songId/comments', requireAuth, async(req, res) => {
+
+
+    const { body } = req.body;
+
+    const {user} = req;
+
+    const id = req.params.songId
+    const song = await Song.findByPk(id)
+
+    if (!song){
+        res.status(404).json({
+            message: "Song couldn't be found",
+            statusCode: 404
+          })
+    }
+
+    const comment = await Comment.create({
+        userId: user.id,
+        songId: id,
+        body
+    })
+
+    return res.json({
+        comment
+      });
+})
+
+
 
 module.exports = router;
