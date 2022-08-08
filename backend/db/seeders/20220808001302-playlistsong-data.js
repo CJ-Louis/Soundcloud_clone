@@ -13,12 +13,12 @@ module.exports = {
     */
      return queryInterface.bulkInsert('PlaylistSongs', [
       {
-        playlistId: 1,
-        songId: 1
+        PlaylistId: 1,
+        SongId: 1
       },
       {
-        playlistId: 1,
-        songId: 2
+        PlaylistId: 1,
+        SongId: 2
       }
     ], {})
   },
@@ -31,7 +31,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
      return queryInterface.bulkDelete('PlaylistSongs', {
-      palylistId: 1
+      PlayistId: 1
      }, {});
   }
 };
