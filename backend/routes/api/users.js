@@ -64,7 +64,15 @@ router.post(
         await setTokenCookie(res, user);
 
         return res.json({
-          user
+          // user,
+          user: {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username,
+          }
+
         });
       } else if (uniqueEmail != false){
         return res.status(403).json({
