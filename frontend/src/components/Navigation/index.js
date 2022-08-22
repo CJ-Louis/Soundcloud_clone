@@ -16,17 +16,19 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <LoginFormModal className='user'/>
+        <NavLink to="/signup" className='user signup'>Creat an Account</NavLink>
       </>
     );
   }
 
   return (
     <ul>
-      <li>
+      <li className='topbar'>
         <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
+        <img src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
+        <div>{isLoaded && sessionLinks}</div>
+
       </li>
     </ul>
   );

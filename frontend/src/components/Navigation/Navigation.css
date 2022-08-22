@@ -1,3 +1,20 @@
 .profile-dropdown{
     background-color: chartreuse;
 }
+.topbar{
+    /* background-color: rgb(138, 43, 226, 0.4); */
+    display: flex;
+    justify-content: space-between;
+}
+.user{
+    margin: 10px;
+}
+.signup{
+    background-color: orange;
+    border-radius: 2px;
+}
+.topimg{
+    position: relative;
+    left: 10%;
+    z-index: -1;
+}
