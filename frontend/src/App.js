@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import SignupFormPage from './components/SignUpFormPage';
+import SongsPage from './components/SongsPage';
 import * as sessionActions from "./store/session";
 import Navigation from './components/Navigation';
 import './App.css'
@@ -20,10 +21,14 @@ function App() {
         <Switch>
           <Route path exact='/'>
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
-            <div></div>
+            <div>CLICK BELOW TO CHECKOUT SOME SONGS</div>
+            <NavLink to="/songs">SpoofCloud-Songs</NavLink>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/songs">
+            <SongsPage />
           </Route>
         </Switch>
       )}

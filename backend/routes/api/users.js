@@ -118,13 +118,17 @@ router.post(
       where: { userId }
     })
 
+    if (albumCount.rows[0]){
+      let imgUrl = albumCount.rows[0].imageUrl
+    } else imgUrl = ''
+
     return res.json({
       user: {
         id: user.id,
         username: user.username,
         totalSongs: songCount.count,
         totalAlbums: albumCount.count,
-        imgUrl: albumCount.rows[0].imageUrl
+        imgUrl,
       }
 
     });
