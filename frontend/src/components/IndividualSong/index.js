@@ -47,10 +47,12 @@ function SingleSong() {
     <div>
         <ul>
             <li>
+
+                <div><img src={song.imageUrl}  alt='Song image not found' /></div>
                 <span>Title: {song?.title}</span>
                 <p>     description: {song?.description}</p>
                 <p>     By: {song?.userId}</p>
-                <span>     img: no current working img urls</span>
+
                 <p> PLAY:
                     <AudioPlayer
                         // autoPlay

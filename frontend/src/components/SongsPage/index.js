@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as songActions from '../../store/songs'
+import './songs.css'
 
 
 function SongsPage() {
@@ -20,12 +21,16 @@ function SongsPage() {
     let list = songArr.map(song =>{
         return(
         <li key={song.id}>
+            <span>
+                <img className='imgs' src={song.imageUrl} alt='image not found' />
+            </span>
+        <div></div>
             <span>Title:
                 <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
             </span>
             <p>     description: {song.description}</p>
             <p>     By: {song.userId}</p>
-            <span>     img: no current working img urls</span>
+
             <p></p>
         </li>
         )
@@ -40,7 +45,7 @@ function SongsPage() {
 
   return (
     <div>
-        <ul>
+        <ul className="songs">
             {songList(songs)}
         </ul>
         <div>
