@@ -1,42 +1,30 @@
 import { useState,  useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { editSongForm, retrieveSongs } from "../../store/songs";
+import { editAlbumForm, retrieveAlbums } from '../../store/albums'
 
-const EditSongForm = () => {
+const EditAlbumForm = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-      dispatch(retrieveSongs())
+      dispatch(retrieveAlbums())
     },[dispatch])
-    const { songId } = useParams()
-    const song = useSelector(state => {
-      return state.songs[songId]
+    const { albumId } = useParams()
+    const album = useSelector(state => {
+      return state.albums[albumId]
       });
 
 
-    // const songArr = Object.values(songs)
-    // let song = songArr.filter(song => {
-    //   return song.id === +songId
-    // })
-    // song = song[0]
-
-
-
-  const [title, setTitle] = useState(song?.title);
-  const [description, setDescription] = useState(song?.description);
-  const [url, setUrl] = useState(song?.url);
-  const [imageUrl, setImageUrl] = useState(song?.imageUrl);
-  const [albumId, setAlbumId] = useState(song?.albumId ? song.albumId : 'released as single');
+  const [title, setTitle] = useState(album?.title);
+  const [description, setDescription] = useState(album?.description);
+  const [imageUrl, setImageUrl] = useState(album?.imageUrl);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
-  const updateUrl = (e) => setUrl(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
-  const updateAlbumId = (e) => setAlbumId(e.target.value);
 
 
 
@@ -46,20 +34,18 @@ const EditSongForm = () => {
     const payload = {
       title,
       description,
-      url,
       imageUrl,
-      albumId,
     };
-    let editedSong = await dispatch(editSongForm(song.id, payload))
+    let editedAlbum = await dispatch(editAlbumForm(album.id, payload))
 
-    if (editedSong) {
-      history.push(`/songs/${song.id}`);
+    if (editedAlbum) {
+      history.push(`/albums/${album.id}`);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push('/songs')
+    history.push('/albums')
   };
 
   return (
@@ -79,25 +65,14 @@ const EditSongForm = () => {
           onChange={updateDescription} />
         <input
           type="text"
-          placeholder="Audio Url"
-          required
-          value={url}
-          onChange={updateUrl} />
-        <input
-          type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImageUrl} />
-        <input
-          type="text"
-          placeholder="Album"
-          value={albumId}
-          onChange={updateAlbumId} />
-        <button type="submit">Edit song</button>
+        <button type="submit">Edit album</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
   );
 };
 
-export default EditSongForm;
+export default EditAlbumForm;

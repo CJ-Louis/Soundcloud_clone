@@ -51,8 +51,9 @@ export const createSong = (song) => async (dispatch) => {
       body: JSON.stringify(song),
     });
     const data = await response.json();
-    dispatch(makeSong(data.songs));
-    return response;
+    console.log('This is our data:   ', data)
+    dispatch(makeSong(data.song));
+    return data.song;
   };
 
   export const editSongForm = (id, song) => async (dispatch) => {
@@ -63,8 +64,8 @@ export const createSong = (song) => async (dispatch) => {
         body: JSON.stringify(song),
       });
       const data = await response.json()
-      dispatch(makeSong(data.songs))
-      return response
+      dispatch(makeSong(data.song))
+      return data.song
   }
 
   export const songDeleter = (songId) => async (dispatch) => {
@@ -72,7 +73,7 @@ export const createSong = (song) => async (dispatch) => {
       method: 'DELETE',
     });
     dispatch(deleteSong());
-    return response;
+    return response
   };
 
 
@@ -99,20 +100,20 @@ const songReducer = (state = initialState, action) => {
             songlist: action.songlist
           };
         case MAKE_SONG:
-          if (!state[action.songs.id]){
+          if (!state[action.song.id]){
             const newState = {
                 ...state,
-                [action.songs.id]: action.songs
+                [action.song.id]: action.song
             }
             const songList = newState.songlist.map(id => newState[id])
-            songList.push(action.songs)
+            songList.push(action.song)
             newState.songlist = songList
             return newState
           }
           return {
             ...state,
-            [action.songs.id]: {
-                ...state[action.songs.id],
+            [action.song.id]: {
+                ...state[action.song.id],
                 ...action.songs
             }
           }

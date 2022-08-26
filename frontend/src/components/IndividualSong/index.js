@@ -12,18 +12,20 @@ function SingleSong() {
     dispatch(songActions.retrieveSongs())
   },[dispatch])
 
-
-  const songs = useSelector(state => {
-    return state.songs.songlist
-    });
-
   const { songId } = useParams()
 
-  const songArr = Object.values(songs)
-  let song = songArr.filter(song => {
-    return song.id === +songId
-  })
-  song = song[0]
+
+  const song = useSelector(state => {
+    return state.songs[songId]
+  });
+
+
+
+
+
+   console.log('This is the songs variable', song)
+
+
 
 
   const handleDelete = async (e) => {

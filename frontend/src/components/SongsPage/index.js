@@ -44,8 +44,8 @@ function SongsPage() {
             {songList(songs)}
         </ul>
         <div>
-        <span>Title:
-            <NavLink to={`/songs/create`}>Make a new song</NavLink>
+        <span>Add:
+            <NavLink to={`/songs/create`}> Make a new song</NavLink>
         </span>
         </div>
     </div>
