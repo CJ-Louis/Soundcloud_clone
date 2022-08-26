@@ -13,7 +13,6 @@ const getSongs = (songlist) => {
 }
 
 
-
 const makeSong = (song) => {
   return {
     type: MAKE_SONG,
@@ -112,10 +111,7 @@ const songReducer = (state = initialState, action) => {
           }
           return {
             ...state,
-            [action.song.id]: {
-                ...state[action.song.id],
-                ...action.songs
-            }
+            [action.song.id]: action.song
           }
           case DELETE_SONG:
             const newState = {

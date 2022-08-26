@@ -11,17 +11,12 @@ const EditSongForm = () => {
     useEffect(() => {
       dispatch(retrieveSongs())
     },[dispatch])
+
     const { songId } = useParams()
+    
     const song = useSelector(state => {
       return state.songs[songId]
       });
-
-
-    // const songArr = Object.values(songs)
-    // let song = songArr.filter(song => {
-    //   return song.id === +songId
-    // })
-    // song = song[0]
 
 
 

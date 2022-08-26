@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import * as songActions from '../../store/songs'
 
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+// import 'react-h5-audio-player/lib/styles.less' Use LESS
+// import 'react-h5-audio-player/src/styles.scss' Use SASS
+
+
+
+
 
 function SingleSong() {
   const dispatch = useDispatch();
@@ -43,7 +51,14 @@ function SingleSong() {
                 <p>     description: {song?.description}</p>
                 <p>     By: {song?.userId}</p>
                 <span>     img: no current working img urls</span>
-                <p> PLAY: {song?.url}</p>
+                <p> PLAY:
+                    <AudioPlayer
+                        // autoPlay
+                        src={song?.url}
+                        onPlay={e => console.log("onPlay")}
+                        // other props here
+                    />
+                </p>
             </li>
         </ul>
         <p>Click here to
