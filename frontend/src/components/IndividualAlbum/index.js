@@ -28,12 +28,12 @@ function SingleAlbum() {
 
 
 
-//   const handleDelete = async (e) => {
-//     e.preventDefault();
-//     await dispatch(songActions.songDeleter(song.id))
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await dispatch(albumActions.albumDeleter(album.id))
 
-//     history.push(`/albums`);
-//   };
+    history.push(`/albums`);
+  };
 
 
   return (
@@ -50,7 +50,7 @@ function SingleAlbum() {
         <p>Click here to
             <NavLink to={`/albums/${album?.id}/edit`}>Edit</NavLink>
         </p>
-        {/* <button type="button" onClick={handleDelete}>Delete</button> */}
+        <button type="button" onClick={handleDelete}>Delete</button>
         <div></div>
         <NavLink to='/albums'>Back to Albums</NavLink>
     </div>

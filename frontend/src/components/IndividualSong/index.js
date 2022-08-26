@@ -31,7 +31,6 @@ function SingleSong() {
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(songActions.songDeleter(song.id))
-
     history.push(`/songs`);
   };
 

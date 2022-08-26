@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf';
 
 const GET_ALBUMS = 'song/getAlbum'
 const MAKE_ALBUMS = 'song/makeAlbum';
-// const DELETE_ALBUMS = 'song/deleteAlbum';
+const DELETE_ALBUM = 'song/deleteAlbum';
 
 const getAlbums = (albumlist) => {
     return {
@@ -21,12 +21,12 @@ const makeAlbum = (album) => {
 };
 
 
-// const deleteSong = (album) => {
-//   return {
-//     type: DELETE_ALBUMS,
-//     album
-//   };
-// };
+const deleteAlbum = (album) => {
+  return {
+    type: DELETE_ALBUM,
+    album
+  };
+};
 
 export const retrieveAlbums = () => async dispatch => {
         const response = await csrfFetch('/api/albums');
@@ -61,13 +61,13 @@ export const createAlbum = (album) => async (dispatch) => {
       return data.album
   }
 
-//   export const songDeleter = (songId) => async (dispatch) => {
-//     const response = await csrfFetch(`/api/songs/${songId}`, {
-//       method: 'DELETE',
-//     });
-//     dispatch(deleteSong());
-//     return response
-//   };
+  export const albumDeleter = (albumId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/albums/${albumId}`, {
+      method: 'DELETE',
+    });
+    dispatch(deleteAlbum());
+    return response
+  };
 
 
 
@@ -80,16 +80,7 @@ const initialState = { albumlist: [] };
 //   };
 
 
-    // case GET_SONGS:
-    //   const allSongs = {};
-    //   action.songlist.forEach(song => {
-    //     allSongs[song.id] = song;
-    //   });
-    //   return {
-    //     ...allSongs,
-    //     ...state,
-    //     songlist: action.songlist
-    //   };
+
 
 
 const albumReducer = (state = initialState, action) => {
@@ -122,15 +113,11 @@ const albumReducer = (state = initialState, action) => {
                 ...action.album
             }
           }
-        //   case DELETE_SONG:
-        //     const newState = {
-        //         ...state,
-        //     }
-        //     const songList = newState.songlist.map(id => newState[id])
-        //     const slicedList = action.songs.id > 1 ? songList.slice(0, action.songs.id).concat(songList.slice(action.songs.id++)) : songList.slice(1)
-        //     newState[action.songs.id] = null
-        //     newState.songlist = slicedList
-        //     return newState
+          case DELETE_ALBUM:
+            const newState = {
+                ...state,
+            }
+            return newState
     default:
       return state;
   }

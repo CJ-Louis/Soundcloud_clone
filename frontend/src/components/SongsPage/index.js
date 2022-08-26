@@ -10,7 +10,7 @@ function SongsPage() {
   const songs = useSelector(state => {
     return state.songs.songlist;
   });
-  console.log('This is songs state in /songs    ', songs)
+
   useEffect(() => {
     dispatch(songActions.retrieveSongs())
   },[dispatch])
@@ -30,10 +30,10 @@ function SongsPage() {
         </li>
         )
     })
-    console.log('this is the list',list)
+
     return list
   }
-  console.log(songList(songs))
+
   if (!songs){
     return <div>Loading</div>
   }

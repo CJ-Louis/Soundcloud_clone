@@ -11,7 +11,6 @@ import SingleAlbum from './components/IndividualAlbum';
 import AlbumCreator from './components/AlbumCreator';
 import EditAlbumForm from './components/EditAlbum';
 import * as sessionActions from "./store/session";
-import * as songActions from './store/songs'
 import Navigation from './components/Navigation';
 import './App.css'
 
@@ -21,11 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  const { songId } = useParams();
-  useEffect(() => {
-    dispatch(songActions.retrieveSongs())
-  },[dispatch, songId])
-  console.log('App hit')
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />

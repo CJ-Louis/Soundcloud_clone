@@ -72,7 +72,7 @@ export const createSong = (song) => async (dispatch) => {
     const response = await csrfFetch(`/api/songs/${songId}`, {
       method: 'DELETE',
     });
-    dispatch(deleteSong());
+    dispatch(deleteSong(songId));
     return response
   };
 
@@ -121,10 +121,6 @@ const songReducer = (state = initialState, action) => {
             const newState = {
                 ...state,
             }
-            const songList = newState.songlist.map(id => newState[id])
-            const slicedList = action.songs.id > 1 ? songList.slice(0, action.songs.id).concat(songList.slice(action.songs.id++)) : songList.slice(1)
-            newState[action.songs.id] = null
-            newState.songlist = slicedList
             return newState
     default:
       return state;
