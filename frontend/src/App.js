@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { Route, Switch, NavLink, useParams } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import SignupFormPage from './components/SignUpFormPage';
 import SongsPage from './components/SongsPage';
 import SingleSong from './components/IndividualSong';
