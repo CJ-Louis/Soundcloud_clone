@@ -1,8 +1,9 @@
 import { csrfFetch } from './csrf';
 
 const GET_SONGS = 'song/getSong'
-// const MAKE_SONG = 'song/makeSong';
-// const DELETE_SONG = 'song/deleteSong';
+const MAKE_SONG = 'song/makeSong';
+// const EDIT_SONG = 'song/editSong'
+const DELETE_SONG = 'song/deleteSong';
 
 const getSongs = (songlist) => {
     return {
@@ -11,23 +12,22 @@ const getSongs = (songlist) => {
     }
 }
 
-    //   const load = list => ({
-    //     type: LOAD,
-    //     list
-    //   });
 
-// const makeSong = (song) => {
-//   return {
-//     type: MAKE_SONG,
-//     payload: song,
-//   };
-// };
 
-// const deleteSong = () => {
-//   return {
-//     type: DELETE_SONG,
-//   };
-// };
+const makeSong = (song) => {
+  return {
+    type: MAKE_SONG,
+    song,
+  };
+};
+
+
+const deleteSong = (song) => {
+  return {
+    type: DELETE_SONG,
+    song
+  };
+};
 
 export const retrieveSongs = () => async dispatch => {
         const response = await csrfFetch('/api/songs');
@@ -36,6 +36,44 @@ export const retrieveSongs = () => async dispatch => {
         return response;
       };
 
+// export const retrieveSingle = (songId) => async dispatch => {
+//         const response = await csrfFetch(`/api/songs/${songId}`);
+//         const data = await response.json();
+//         dispatch(getSongs(data.song));
+//         return response;
+// };
+
+export const createSong = (song) => async (dispatch) => {
+    if (!song.albumId) song.albumId = null
+    const response = await csrfFetch("/api/songs", {
+      method: "POST",
+      headers: { "Content-Type": 'application/json' },
+      body: JSON.stringify(song),
+    });
+    const data = await response.json();
+    dispatch(makeSong(data.songs));
+    return response;
+  };
+
+  export const editSongForm = (id, song) => async (dispatch) => {
+    if (!song.albumId || song.albumId === 'released as single') song.albumId = null
+    const response = await csrfFetch(`/api/songs/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": 'application/json' },
+        body: JSON.stringify(song),
+      });
+      const data = await response.json()
+      dispatch(makeSong(data.songs))
+      return response
+  }
+
+  export const songDeleter = (songId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/songs/${songId}`, {
+      method: 'DELETE',
+    });
+    dispatch(deleteSong());
+    return response;
+  };
 
 
 
@@ -46,6 +84,7 @@ const initialState = { songlist: [] };
 //       return songA.id - songB.id;
 //     }).map((song) => song.id);
 //   };
+
 
 const songReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -59,6 +98,33 @@ const songReducer = (state = initialState, action) => {
             ...state,
             songlist: action.songlist
           };
+        case MAKE_SONG:
+          if (!state[action.songs.id]){
+            const newState = {
+                ...state,
+                [action.songs.id]: action.songs
+            }
+            const songList = newState.songlist.map(id => newState[id])
+            songList.push(action.songs)
+            newState.songlist = songList
+            return newState
+          }
+          return {
+            ...state,
+            [action.songs.id]: {
+                ...state[action.songs.id],
+                ...action.songs
+            }
+          }
+          case DELETE_SONG:
+            const newState = {
+                ...state,
+            }
+            const songList = newState.songlist.map(id => newState[id])
+            const slicedList = action.songs.id > 1 ? songList.slice(0, action.songs.id).concat(songList.slice(action.songs.id++)) : songList.slice(1)
+            newState[action.songs.id] = null
+            newState.songlist = slicedList
+            return newState
     default:
       return state;
   }

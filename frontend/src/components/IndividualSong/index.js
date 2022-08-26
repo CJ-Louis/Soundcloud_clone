@@ -1,42 +1,55 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import * as songActions from '../../store/songs'
 
 
 function SingleSong() {
   const dispatch = useDispatch();
-  const { songId } = useParams();
-  const songs = useSelector(state => state.songs.songlist);
-  console.log('This is the song', songs)
-  console.log('This is the parameter ID',songId)
+  const history = useHistory();
+
   useEffect(() => {
-    
-  },[songId])
+    dispatch(songActions.retrieveSongs())
+  },[dispatch])
+
+
+  const songs = useSelector(state => {
+    return state.songs.songlist
+    });
+
+  const { songId } = useParams()
 
   const songArr = Object.values(songs)
-
   let song = songArr.filter(song => {
     return song.id === +songId
   })
   song = song[0]
 
-  if (!songs){
-    return <div>Loading</div>
-  }
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await dispatch(songActions.songDeleter(song.id))
+
+    history.push(`/songs`);
+  };
+
 
   return (
     <div>
         <ul>
             <li>
-                <span>Title: {song.title}</span>
-                <p>     description: {song.description}</p>
-                <p>     By: {song.userId}</p>
+                <span>Title: {song?.title}</span>
+                <p>     description: {song?.description}</p>
+                <p>     By: {song?.userId}</p>
                 <span>     img: no current working img urls</span>
-                <p> PLAY: {song.url}</p>
+                <p> PLAY: {song?.url}</p>
             </li>
         </ul>
-        <p>This page can connect</p>
+        <p>Click here to
+            <NavLink to={`/songs/${song?.id}/edit`} song={song} >Edit</NavLink>
+        </p>
+        <button type="button" onClick={handleDelete}>Delete</button>
+        <div></div>
         <NavLink to='/songs'>Back to Songs</NavLink>
     </div>
   );

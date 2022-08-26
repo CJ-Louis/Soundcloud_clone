@@ -10,7 +10,7 @@ function SongsPage() {
   const songs = useSelector(state => {
     return state.songs.songlist;
   });
-
+  console.log('This is songs state in /songs    ', songs)
   useEffect(() => {
     dispatch(songActions.retrieveSongs())
   },[dispatch])
@@ -43,6 +43,11 @@ function SongsPage() {
         <ul>
             {songList(songs)}
         </ul>
+        <div>
+        <span>Title:
+            <NavLink to={`/songs/create`}>Make a new song</NavLink>
+        </span>
+        </div>
     </div>
   );
 }
