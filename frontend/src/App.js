@@ -12,7 +12,6 @@ import AlbumCreator from './components/AlbumCreator';
 import EditAlbumForm from './components/EditAlbum';
 import * as sessionActions from "./store/session";
 import Navigation from './components/Navigation';
-import Player from './components/AudioPlayer';
 import './App.css'
 
 function App() {
@@ -40,9 +39,6 @@ function App() {
           <Route path="/songs/create">
             <SongCreater />
           </Route>
-          <Route path="/songs/:songId/play">
-            <Player />
-          </Route>
           <Route path={`/songs/:songId/edit`}>
             <EditSongForm />
           </Route>
@@ -64,7 +60,6 @@ function App() {
           <Route path="/albums">
             <AlbumsPage />
           </Route>
-
         </Switch>
       )}
     </>
