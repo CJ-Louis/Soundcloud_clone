@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="logout" onClick={logout}>Log Out</button>
           </li>
           {/* <img src="https://c.tenor.com/GwhDgXiOYC0AAAAC/patrick-star-evil-laugh.gif" alt="CJ's dum" /> */}
         </ul>
