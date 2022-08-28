@@ -40,6 +40,7 @@ function AlbumsPage() {
 
   return (
     <div>
+        <div className="topimg homie"></div>
         <ul>
             {albumList(albums)}
         </ul>

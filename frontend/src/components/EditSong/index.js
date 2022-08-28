@@ -13,7 +13,7 @@ const EditSongForm = () => {
     },[dispatch])
 
     const { songId } = useParams()
-    
+
     const song = useSelector(state => {
       return state.songs[songId]
       });
@@ -59,6 +59,7 @@ const EditSongForm = () => {
 
   return (
     <section className="new-form-holder centered middled">
+        <div className="topimg homie"></div>
       <form onSubmit={handleSubmit}>
         <input
           type="string"

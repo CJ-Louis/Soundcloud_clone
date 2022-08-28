@@ -12,11 +12,14 @@ import AlbumCreator from './components/AlbumCreator';
 import EditAlbumForm from './components/EditAlbum';
 import * as sessionActions from "./store/session";
 import Navigation from './components/Navigation';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 import './App.css'
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [playingSong, setPlayingSong] = useState('')
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -28,11 +31,13 @@ function App() {
         <Switch>
           <Route path exact='/'>
             <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
+            
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
             <div>CLICK BELOW TO CHECKOUT SOME SONGS</div>
             <NavLink to="/songs">SpoofCloud-Songs</NavLink>
             <div>OR CHECK OUT SOME HOT ALBUMS!</div>
             <NavLink to="/albums">SpoofCloud-Albums</NavLink>
+            <div className='songplayer'></ div>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
@@ -44,7 +49,7 @@ function App() {
             <EditSongForm />
           </Route>
           <Route path={`/songs/:songId`}>
-            <SingleSong />
+            <SingleSong setPlayingSong={setPlayingSong}/>
           </Route>
           <Route path="/songs">
             <SongsPage />
@@ -62,7 +67,18 @@ function App() {
             <AlbumsPage />
           </Route>
         </Switch>
+
       )}
+      <div> </div>
+      <div> </div>
+      <div>
+        <AudioPlayer
+          // autoPlay
+          src={playingSong}
+          onPlay={e => console.log("onPlay")}
+          // other props here
+        />
+      </div>
     </>
   );
 }

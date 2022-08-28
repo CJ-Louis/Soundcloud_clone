@@ -33,6 +33,7 @@ function SignupFormPage() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="topimg homie"></div>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>

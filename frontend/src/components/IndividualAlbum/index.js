@@ -38,6 +38,7 @@ function SingleAlbum() {
 
   return (
     <div>
+        <div className="topimg homie"></div>
         <ul>
             <li>
                 <span>Title: {album?.title}</span>

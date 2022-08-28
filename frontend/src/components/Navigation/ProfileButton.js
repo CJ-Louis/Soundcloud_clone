@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import profile from '../../SiteImages/profile-img.png'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,9 +31,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className='userbutton' onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      {/* <button className='userbutton' > */}
+        {/* <i className="fa-duotone fa-cloud"></i>
+         */}
+         <img className='cloudprofile' src={profile} alt='user-profile' onClick={openMenu}/>
+      {/* </button> */}
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>

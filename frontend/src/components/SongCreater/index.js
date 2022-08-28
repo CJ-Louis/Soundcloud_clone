@@ -48,6 +48,8 @@ const CreateSongForm = () => {
   };
 
   return (
+    <div>
+    <div className="topimg homie"></div>
     <section className="new-form-holder centered middled">
       <form onSubmit={handleSubmit}>
         <input
@@ -82,6 +84,7 @@ const CreateSongForm = () => {
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
+    </div>
   );
 };
 

@@ -24,12 +24,12 @@
     width: 220px;
     height: 75px;
 }
-.userbuttons{
+/* .userbuttons{
     width: 400px;
     display: flex;
     justify-content: flex-end;
-}
-.userbutton{
-    width: 40px;
-    height: 40px;
+} */
+.cloudprofile{
+    width: 120px;
+    height: 80px;
 }
