@@ -5,16 +5,31 @@
     /* background-color: rgb(138, 43, 226, 0.4); */
     display: flex;
     justify-content: space-between;
+    height: 100px;
 }
 .user{
-    margin: 10px;
+    margin: 100px;
 }
 .signup{
     background-color: orange;
     border-radius: 2px;
 }
 .topimg{
-    position: relative;
+    position: static;
+    width: max-content;
     left: 10%;
     z-index: -1;
+}
+.logo{
+    width: 220px;
+    height: 75px;
+}
+.userbuttons{
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+}
+.userbutton{
+    width: 40px;
+    height: 40px;
 }

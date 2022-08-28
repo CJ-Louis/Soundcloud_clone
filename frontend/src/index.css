@@ -1,4 +1,7 @@
 /* TODO Add site wide styles */
 body{
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    padding-left: 175px;
+    padding-right: 175px;
+    background-color: rgba(100, 205, 246, 0.308);
 }

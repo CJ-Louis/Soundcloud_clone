@@ -27,6 +27,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path exact='/'>
+            <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
             <div>CLICK BELOW TO CHECKOUT SOME SONGS</div>
             <NavLink to="/songs">SpoofCloud-Songs</NavLink>

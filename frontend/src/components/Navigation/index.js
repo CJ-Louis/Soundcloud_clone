@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import logo from '../../SiteImages/logo.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -25,10 +26,10 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li className='topbar'>
-        <NavLink exact to="/">Home</NavLink>
-        <img src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
-        <div>{isLoaded && sessionLinks}</div>
-
+        <NavLink exact to="/" >
+            <img className='logo' src={logo} alt='' />
+        </NavLink>
+        <div className='userbuttons'>{isLoaded && sessionLinks}</div>
       </li>
     </ul>
   );
