@@ -32,9 +32,12 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='songlistdiv' >
       <div className="topimg homie"></div>
-      <ul>
+      <span className="hometext signupheader">Please Enter Your info below</span>
+      <img className='signuplogo' src="https://us.123rf.com/450wm/yupiramos/yupiramos1705/yupiramos170517378/78078187-kawaii-wolkenikone-%C3%BCber-wei%C3%9Fem-hintergrund-buntes-design-vektor-illustration.jpg?ver=6" />
+      <span className="cloudtext">Welcome! Good to have ya!</span>
+      <ul >
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>

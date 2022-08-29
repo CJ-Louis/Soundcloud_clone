@@ -39,24 +39,29 @@ function App() {
             <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
 
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
-            <div>CLICK BELOW TO CHECKOUT SOME SONGS
+            <div className='songlistdiv' >
+              <span className='hometext'>CLICK BELOW TO CHECKOUT SOME SONGS</span>
+
               <div className='homedisplayelements'>
-                <NavLink to="/songs/4">
+                <NavLink to={`/songs/${songs[2]?.id}`}>
                   <img className='songhomedisplay' src={songs[2]?.imageUrl} alt='Song 4' />
                 </NavLink>
-                <NavLink to="/songs/5">
+                <NavLink to={`/songs/${songs[3]?.id}`}>
                   <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 5' />
                 </NavLink>
-                <NavLink to="/songs/6">
+                <NavLink to={`/songs/${songs[4]?.id}`}>
                   <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 6' />
                 </NavLink>
-                <NavLink to="/songs/7">
+                <NavLink to={`/songs/${songs[5]?.id}`}>
                   <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 7' />
                 </NavLink>
               </div>
             </div>
-            <div>OR CHECK OUT SOME HOT ALBUMS!</div>
-            <NavLink to="/albums">SpoofCloud-Albums</NavLink>
+
+            <div className='songlistdiv'>
+              <div className='hometext'>OR CHECK OUT SOME HOT ALBUMS!</div>
+              <NavLink to="/albums">SpoofCloud-Albums</NavLink>
+            </div>
             <div className='songplayer'></ div>
           </Route>
           <Route path="/signup">

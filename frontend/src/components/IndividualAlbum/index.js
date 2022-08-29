@@ -18,12 +18,9 @@ function SingleAlbum() {
   const album = useSelector(state => {
     return state.albums[albumId]
   });
-
-
-
-
-
-   console.log('This is the album variable', album)
+  const user = useSelector(state => {
+    return state.session.user
+  });
 
 
 
@@ -36,23 +33,33 @@ function SingleAlbum() {
   };
 
 
+  let userOptions;
+  if (!user) {
+   userOptions = ( <div />)
+  }
+  else if (user.id === album?.userId) {
+  userOptions = (
+     <div>
+       <p>Click here to
+           <NavLink to={`/albums/${album?.id}/edit`}>Edit</NavLink>
+       </p>
+       <button type="button" onClick={handleDelete}>Delete</button>
+       <div></div>
+     </div>
+   )
+  } else {
+     userOptions = (<div />)
+  }
+
   return (
-    <div>
+    <div className="songlistdiv">
         <div className="topimg homie"></div>
-        <ul>
-            <li>
+        <div><img src={album?.imageUrl}  alt='Album image not found' className="cover"/></div>
                 <span>Title: {album?.title}</span>
-                <p>     description: {album?.description}</p>
+                <p>     Description: {album?.description}</p>
                 <p>     By: {album?.userId}</p>
-                <span>     img: no current working img urls</span>
                 <p> Songs: </p>
-            </li>
-        </ul>
-        <p>Click here to
-            <NavLink to={`/albums/${album?.id}/edit`}>Edit</NavLink>
-        </p>
-        <button type="button" onClick={handleDelete}>Delete</button>
-        <div></div>
+        {userOptions}
         <NavLink to='/albums'>Back to Albums</NavLink>
     </div>
   );

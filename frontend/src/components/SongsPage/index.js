@@ -56,7 +56,7 @@ function SongsPage() {
   }
 
   return (
-    <div>
+    <div className="songlistdiv">
         <div className="topimg homie"></div>
         <ul className="songs">
             {songList(songs)}

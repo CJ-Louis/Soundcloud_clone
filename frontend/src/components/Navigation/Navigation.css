@@ -18,7 +18,7 @@
 .usersignup{
     background-color: orange;
     border-radius: 3px;
-    
+
     margin-left: 15px;
 }
 .topimg{
@@ -32,11 +32,12 @@
     width: 220px;
     height: 75px;
 }
-/* .userbuttons{
-    width: 400px;
+.userbuttons{
+    /* width: 400px; */
     display: flex;
     justify-content: flex-end;
-} */
+    align-items: center;
+}
 .cloudprofile{
     width: 120px;
     height: 80px;
@@ -49,12 +50,16 @@
     width: 120px;
     height: 60px;
     right: 0px;
-    top: 0px;
+    top: 15px;
 }
 .albumslogo{
     position: relative;
     width: 120px;
     height: 60px;
     right: 0px;
-    top: 0px;
+    top: 15px;
+}
+.logo{
+    position: relative;
+    top: 10px;
 }

@@ -45,13 +45,18 @@ const EditAlbumForm = () => {
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push('/albums')
+    history.push(`/albums/${album?.id}`)
   };
 
   return (
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit}>
+        <div className='songlistdiv'>
+            <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
+            <span className='suntext'>Change is good!</span>
+        </div>
+
+      <form onSubmit={handleSubmit} className='editingform songlistdiv'>
         <input
           type="string"
           placeholder="Title"

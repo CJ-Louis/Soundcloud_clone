@@ -34,9 +34,6 @@ function SingleSong({setPlayingSong}) {
 
 
 
-   console.log('This is the songs variable', song)
-   console.log('This is our current user', user)
-
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(songActions.songDeleter(song.id))
@@ -75,7 +72,7 @@ function SingleSong({setPlayingSong}) {
 
                 <div><img src={song?.imageUrl}  alt='Song image not found' className="cover"/></div>
                 <span>Title: {song?.title}</span>
-                <p>     description: {song?.description}</p>
+                <p>     Description: {song?.description}</p>
                 <p>     By: {song?.userId}</p>
 
                 <p> PLAY:

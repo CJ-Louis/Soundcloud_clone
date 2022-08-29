@@ -54,13 +54,13 @@ const EditSongForm = () => {
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push('/songs')
+    history.push(`/songs/${song?.id}`)
   };
 
   return (
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='editingform'>
         <input
           type="string"
           placeholder="Title"

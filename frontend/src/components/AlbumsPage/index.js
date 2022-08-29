@@ -10,7 +10,10 @@ function AlbumsPage() {
   const albums = useSelector(state => {
     return state.albums.albumlist;
   });
-  console.log('This is songs state in /albums    ', albums)
+  const user = useSelector(state => {
+    return state.session.user
+  });
+
   useEffect(() => {
     dispatch(albumActions.retrieveAlbums())
   },[dispatch])
@@ -20,33 +23,45 @@ function AlbumsPage() {
     let list = albumArr.map(album =>{
         return(
         <li key={album.id}>
+            <span>
+                <img className='imgs' src={album.imageUrl} alt='image not found' />
+            </span>
+            <div></div>
             <span>Title:
                 <NavLink to={`/albums/${album.id}`}>{album.title}</NavLink>
             </span>
             <p>     description: {album.description}</p>
             <p>     By: {album.userId}</p>
-            <span>     img: no current working img urls</span>
+
             <p></p>
         </li>
         )
     })
-    console.log('this is the list',list)
+
     return list
   }
-  console.log(albumList(albums))
+
   if (!albums){
     return <div>Loading</div>
   }
 
+  let userCreate;
+  if (!user) {
+   userCreate = ( <div>Sign up or log in in order to produce some songs</div>)
+  }
+  else {
+    userCreate = (<NavLink to={`/albums/create`}> Make a new song</NavLink>)
+  }
+
   return (
-    <div>
+    <div className="songlistdiv">
         <div className="topimg homie"></div>
-        <ul>
+        <ul className="songs">
             {albumList(albums)}
         </ul>
         <div>
-        <span>Title:
-            <NavLink to={`/albums/create`}>Make a new album</NavLink>
+        <span>Add:
+            {userCreate}
         </span>
         </div>
     </div>
