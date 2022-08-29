@@ -25,6 +25,8 @@ const EditSongForm = () => {
   const [url, setUrl] = useState(song?.url);
   const [imageUrl, setImageUrl] = useState(song?.imageUrl);
   const [albumId, setAlbumId] = useState(song?.albumId ? song.albumId : 'released as single');
+  const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
@@ -34,7 +36,28 @@ const EditSongForm = () => {
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
 
+  const albums = useSelector((state) => state.albums.albumlist)
+  const user = useSelector((state) => state.session.user)
 
+  useEffect(() => {
+    const errors = [];
+    if (!title.length) errors.push("Song must have a title");
+    if (!description.length) errors.push("Song must have a description");
+    if (!url.length) errors.push("Song must have a audio link");
+    if (!url.includes('.mp3') && !url.includes(".wav") && !url.includes(".ogg")) errors.push("Url must end in .mp3, .wav or .ogg");
+    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png");
+    const checkAlbums = (albumArr, id) => {
+        let checkAlbums = albumArr.filter(album => {
+            return album.id == id
+        })
+        console.log(checkAlbums, albumArr)
+        return checkAlbums[0]
+    }
+    if(!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user.id) errors.push("Please enter a valid album owned by you")
+    console.log('Checking checkAlbums and user id', checkAlbums(albums, albumId), user)
+    setErrors(errors);
+    if (!errors[0]) setHasSubmitted(true)
+  }, [title, description, url, imageUrl, albumId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +83,12 @@ const EditSongForm = () => {
   return (
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit} className='editingform'>
+      <form onSubmit={handleSubmit}>
+        {errors && (
+                <ul >
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+        )}
         <input
           type="string"
           placeholder="Title"

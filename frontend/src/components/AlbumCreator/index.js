@@ -43,7 +43,7 @@ const CreateAlbumForm = () => {
   return (
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='songlistdiv'>
         <input
           type="string"
           placeholder="Title"

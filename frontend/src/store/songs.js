@@ -43,6 +43,7 @@ export const retrieveSongs = () => async dispatch => {
 
 export const createSong = (song) => async (dispatch) => {
     if (!song.albumId) song.albumId = null
+    if (!song.imageUrl) song.imageUrl = 'http://dalelyles.com/musicmp3s/no_cover.jpg'
     const response = await csrfFetch("/api/songs", {
       method: "POST",
       headers: { "Content-Type": 'application/json' },
@@ -56,6 +57,7 @@ export const createSong = (song) => async (dispatch) => {
 
   export const editSongForm = (id, song) => async (dispatch) => {
     if (!song.albumId || song.albumId === 'released as single') song.albumId = null
+    if (!song.imageUrl) song.imageUrl = 'http://dalelyles.com/musicmp3s/no_cover.jpg'
     const response = await csrfFetch(`/api/songs/${id}`, {
         method: "PUT",
         headers: { "Content-Type": 'application/json' },

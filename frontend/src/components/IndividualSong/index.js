@@ -65,9 +65,9 @@ function SingleSong({setPlayingSong}) {
 
 
   return (
-    <div>
+    <div className="songlistdiv">
         <div className="topimg homie"></div>
-        <ul>
+        <ul >
             <li>
 
                 <div><img src={song?.imageUrl}  alt='Song image not found' className="cover"/></div>
