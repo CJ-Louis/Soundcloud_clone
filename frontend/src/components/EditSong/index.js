@@ -45,7 +45,7 @@ const EditSongForm = () => {
     if (!description.length) errors.push("Song must have a description");
     if (!url.length) errors.push("Song must have a audio link");
     if (!url.includes('.mp3') && !url.includes(".wav") && !url.includes(".ogg")) errors.push("Url must end in .mp3, .wav or .ogg");
-    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png");
+    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
     const checkAlbums = (albumArr, id) => {
         let checkAlbums = albumArr.filter(album => {
             return album.id == id
@@ -85,12 +85,15 @@ const EditSongForm = () => {
   return (
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit}>
+        <div className='songlistdiv'>
+        <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
         {errors && (
                 <ul >
                   {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
         )}
+      <form onSubmit={handleSubmit}>
+
         <input
           type="string"
           placeholder="Title"
@@ -122,6 +125,7 @@ const EditSongForm = () => {
         <button type="submit">Edit song</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
+      </div>
     </section>
   );
 };

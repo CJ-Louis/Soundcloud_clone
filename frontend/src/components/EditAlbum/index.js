@@ -32,8 +32,8 @@ const EditAlbumForm = () => {
 
   useEffect(() => {
     const errors = [];
-    if (!title.length) errors.push("Album must have a title");
-    if (!description.length) errors.push("Album must have a description");
+    if (!title?.length) errors.push("Album must have a title");
+    if (!description?.length) errors.push("Album must have a description");
     if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
     setErrors(errors);
     if (!errors[0]) setHasSubmitted(true)
@@ -69,14 +69,15 @@ const EditAlbumForm = () => {
         <div className='songlistdiv'>
             <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
             <span className='suntext'>Change is good!</span>
-        </div>
-
-      <form onSubmit={handleSubmit} className='editingform songlistdiv'>
-      {errors && (
+                        {errors && (
                 <ul >
                   {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-        )}
+            )}
+
+
+      <form onSubmit={handleSubmit} className='editingform songlistdiv'>
+
         <input
           type="string"
           placeholder="Title"
@@ -97,6 +98,7 @@ const EditAlbumForm = () => {
         <button type="submit">Edit album</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
+      </div>
     </section>
   );
 };

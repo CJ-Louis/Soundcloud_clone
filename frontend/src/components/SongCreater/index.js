@@ -31,7 +31,7 @@ const CreateSongForm = () => {
     if (!description.length) errors.push("Song must have a description");
     if (!url.length) errors.push("Song must have a audio link");
     if (!url.includes('.mp3') && !url.includes(".wav") && !url.includes(".ogg")) errors.push("Url must end in .mp3, .wav or .ogg");
-    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png");
+    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
     const checkAlbums = (albumArr, id) => {
         let checkAlbums = albumArr.filter(album => {
             return album.id == id
