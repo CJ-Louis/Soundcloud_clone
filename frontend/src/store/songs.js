@@ -78,11 +78,11 @@ export const createSong = (song) => async (dispatch) => {
 
 const initialState = { songlist: [] };
 
-// const sortList = (songlist) => {
-//     return songlist.sort((songA, songB) => {
-//       return songA.id - songB.id;
-//     }).map((song) => song.id);
-//   };
+const sortList = (songlist) => {
+    return songlist.sort((songA, songB) => {
+      return songA.id - songB.id;
+    });
+  };
 
 
 const songReducer = (state = initialState, action) => {
@@ -95,7 +95,7 @@ const songReducer = (state = initialState, action) => {
           return {
             ...allSongs,
             ...state,
-            songlist: action.songlist
+            songlist: sortList(action.songlist)
           };
         case MAKE_SONG:
           if (!state[action.song.id]){
@@ -105,7 +105,7 @@ const songReducer = (state = initialState, action) => {
             }
             const songList = newState.songlist.map(id => newState[id])
             songList.push(action.song)
-            newState.songlist = songList
+            newState.songlist = sortList(songList)
             return newState
           }
           return {
