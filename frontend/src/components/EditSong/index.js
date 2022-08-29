@@ -50,7 +50,6 @@ const EditSongForm = () => {
         let checkAlbums = albumArr.filter(album => {
             return album.id == id
         })
-        console.log(checkAlbums, albumArr)
         return checkAlbums[0]
     }
     if((albumId !== 'released as single' && albumId !== '') && (!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user.id)) errors.push("Please enter a valid album owned by you")
@@ -87,6 +86,7 @@ const EditSongForm = () => {
         <div className="topimg homie"></div>
         <div className='songlistdiv'>
         <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
+        <span className='suntext'>Change is good!</span>
         {errors && (
                 <ul >
                   {errors.map((error, idx) => <li key={idx}>{error}</li>)}
