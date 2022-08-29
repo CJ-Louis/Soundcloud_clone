@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import logo from '../../SiteImages/logo.png'
+import songLogo from '../../SiteImages/song-logo.png'
+import albumLogo from '../../SiteImages/album-logo.png'
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -18,7 +21,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal className='user'/>
-        <NavLink to="/signup" className='user signup'>Creat an Account</NavLink>
+        <NavLink to="/signup" className='usersignup'>Create Account</NavLink>
       </>
     );
   }
@@ -28,6 +31,12 @@ function Navigation({ isLoaded }){
       <li className='topbar'>
         <NavLink exact to="/" >
             <img className='logo' src={logo} alt='' />
+        </NavLink>
+        <NavLink to='/songs'>
+          <img className='songslogo' src={songLogo} />
+        </NavLink>
+        <NavLink to='/albums'>
+          <img className='albumslogo' src={albumLogo} />
         </NavLink>
         <div className='userbuttons'>{isLoaded && sessionLinks}</div>
       </li>

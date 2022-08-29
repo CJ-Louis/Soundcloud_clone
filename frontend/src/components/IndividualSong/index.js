@@ -22,6 +22,9 @@ function SingleSong({setPlayingSong}) {
   const song = useSelector(state => {
     return state.songs[songId]
   });
+  const user = useSelector(state => {
+    return state.session.user
+  });
 
   const listen = (e) => {
     e.preventDefault()
@@ -32,15 +35,36 @@ function SingleSong({setPlayingSong}) {
 
 
    console.log('This is the songs variable', song)
-
-
-
+   console.log('This is our current user', user)
 
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(songActions.songDeleter(song.id))
     history.push(`/songs`);
   };
+
+
+   let userOptions;
+   if (!user) {
+    userOptions = ( <div />)
+   }
+   else if (user.id === song?.userId) {
+   userOptions = (
+      <div>
+        <p>Click here to
+            <NavLink to={`/songs/${song?.id}/edit`} song={song} >Edit</NavLink>
+        </p>
+        <button type="button" onClick={handleDelete}>Delete</button>
+        <div></div>
+      </div>
+    )
+   } else {
+      userOptions = (<div />)
+   }
+
+
+
+
 
 
   return (
@@ -61,11 +85,7 @@ function SingleSong({setPlayingSong}) {
                 </p>
             </li>
         </ul>
-        <p>Click here to
-            <NavLink to={`/songs/${song?.id}/edit`} song={song} >Edit</NavLink>
-        </p>
-        <button type="button" onClick={handleDelete}>Delete</button>
-        <div></div>
+        {userOptions}
         <NavLink to='/songs'>Back to Songs</NavLink>
     </div>
   );

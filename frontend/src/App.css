@@ -19,3 +19,11 @@
     height: 100px;
     z-index: -2;
 }
+.homedisplayelements{
+    display: flex;
+    justify-content: space-evenly;
+}
+.songhomedisplay{
+    width: 150px;
+    height: 150px;
+}

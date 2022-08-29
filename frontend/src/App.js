@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, NavLink } from 'react-router-dom';
 import SignupFormPage from './components/SignUpFormPage';
 import SongsPage from './components/SongsPage';
@@ -11,6 +11,7 @@ import SingleAlbum from './components/IndividualAlbum';
 import AlbumCreator from './components/AlbumCreator';
 import EditAlbumForm from './components/EditAlbum';
 import * as sessionActions from "./store/session";
+import * as songActions from './store/songs'
 import Navigation from './components/Navigation';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -22,7 +23,12 @@ function App() {
   const [playingSong, setPlayingSong] = useState('')
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(songActions.retrieveSongs())
   }, [dispatch]);
+
+  const songs = useSelector(state => {
+    return state.songs.songlist;
+  });
 
   return (
     <>
@@ -31,10 +37,24 @@ function App() {
         <Switch>
           <Route path exact='/'>
             <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
-            
+
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
-            <div>CLICK BELOW TO CHECKOUT SOME SONGS</div>
-            <NavLink to="/songs">SpoofCloud-Songs</NavLink>
+            <div>CLICK BELOW TO CHECKOUT SOME SONGS
+              <div className='homedisplayelements'>
+                <NavLink to="/songs/4">
+                  <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 4' />
+                </NavLink>
+                <NavLink to="/songs/5">
+                  <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 5' />
+                </NavLink>
+                <NavLink to="/songs/6">
+                  <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 6' />
+                </NavLink>
+                <NavLink to="/songs/7">
+                  <img className='songhomedisplay' src={songs[6]?.imageUrl} alt='Song 7' />
+                </NavLink>
+              </div>
+            </div>
             <div>OR CHECK OUT SOME HOT ALBUMS!</div>
             <NavLink to="/albums">SpoofCloud-Albums</NavLink>
             <div className='songplayer'></ div>
@@ -71,7 +91,7 @@ function App() {
       )}
       <div> </div>
       <div> </div>
-      <div>
+      <div className='mediaplayer'>
         <AudioPlayer
           // autoPlay
           src={playingSong}

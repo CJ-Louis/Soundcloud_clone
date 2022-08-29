@@ -11,6 +11,10 @@ function SongsPage() {
   const songs = useSelector(state => {
     return state.songs.songlist;
   });
+  const user = useSelector(state => {
+    return state.session.user
+  });
+
 
   useEffect(() => {
     dispatch(songActions.retrieveSongs())
@@ -43,6 +47,14 @@ function SongsPage() {
     return <div>Loading</div>
   }
 
+  let userCreate;
+  if (!user) {
+   userCreate = ( <div>Sign up or log in in order to produce some songs</div>)
+  }
+  else {
+    userCreate = (<NavLink to={`/songs/create`}> Make a new song</NavLink>)
+  }
+
   return (
     <div>
         <div className="topimg homie"></div>
@@ -51,7 +63,7 @@ function SongsPage() {
         </ul>
         <div>
         <span>Add:
-            <NavLink to={`/songs/create`}> Make a new song</NavLink>
+            {userCreate}
         </span>
         </div>
     </div>
