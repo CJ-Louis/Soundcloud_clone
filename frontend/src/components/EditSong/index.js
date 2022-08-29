@@ -53,7 +53,7 @@ const EditSongForm = () => {
         console.log(checkAlbums, albumArr)
         return checkAlbums[0]
     }
-    if(!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user.id) errors.push("Please enter a valid album owned by you")
+    if((albumId !== 'released as single' && albumId !== '') && (!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user.id)) errors.push("Please enter a valid album owned by you")
     console.log('Checking checkAlbums and user id', checkAlbums(albums, albumId), user)
     setErrors(errors);
     if (!errors[0]) setHasSubmitted(true)
