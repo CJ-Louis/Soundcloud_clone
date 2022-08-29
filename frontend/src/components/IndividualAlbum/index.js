@@ -21,9 +21,35 @@ function SingleAlbum() {
   const user = useSelector(state => {
     return state.session.user
   });
+  const songs = useSelector(state => {
+    return state.songs.songlist
+  });
 
 
+  const albumsSongs = songs.filter(song =>{
+    return song.albumId == albumId
+  })
+  console.log('This is albumSongs',albumsSongs)
 
+  const songList = (songArr) => {
+    console.log(songArr)
+    let list = songArr.map(song =>{
+        return(
+        <li key={song.id}>
+            <span>
+                <img className='imgs' src={song.imageUrl} alt='image not found' />
+            </span>
+        <div></div>
+            <span>Title:
+                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+            </span>
+            <p></p>
+        </li>
+        )
+    })
+
+    return list
+  }
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -59,6 +85,7 @@ function SingleAlbum() {
                 <p>     Description: {album?.description}</p>
                 <p>     By: {album?.userId}</p>
                 <p> Songs: </p>
+                {songList(albumsSongs)}
         {userOptions}
         <NavLink to='/albums'>Back to Albums</NavLink>
     </div>

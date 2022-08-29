@@ -20,6 +20,9 @@ const EditAlbumForm = () => {
   const [title, setTitle] = useState(album?.title);
   const [description, setDescription] = useState(album?.description);
   const [imageUrl, setImageUrl] = useState(album?.imageUrl);
+  const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
 
 
   const updateTitle = (e) => setTitle(e.target.value);
@@ -27,6 +30,14 @@ const EditAlbumForm = () => {
   const updateImageUrl = (e) => setImageUrl(e.target.value);
 
 
+  useEffect(() => {
+    const errors = [];
+    if (!title.length) errors.push("Album must have a title");
+    if (!description.length) errors.push("Album must have a description");
+    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
+    setErrors(errors);
+    if (!errors[0]) setHasSubmitted(true)
+  }, [title, description, imageUrl]);
 
 
   const handleSubmit = async (e) => {
@@ -36,12 +47,16 @@ const EditAlbumForm = () => {
       description,
       imageUrl,
     };
-    let editedAlbum = await dispatch(editAlbumForm(album.id, payload))
 
-    if (editedAlbum) {
-      history.push(`/albums/${album.id}`);
+    if (hasSubmitted){
+            let editedAlbum = await dispatch(editAlbumForm(album.id, payload))
+
+        if (editedAlbum) {
+            history.push(`/albums/${album.id}`);
+        }
+        };
     }
-  };
+
 
   const handleCancelClick = (e) => {
     e.preventDefault();
@@ -57,6 +72,11 @@ const EditAlbumForm = () => {
         </div>
 
       <form onSubmit={handleSubmit} className='editingform songlistdiv'>
+      {errors && (
+                <ul >
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+        )}
         <input
           type="string"
           placeholder="Title"

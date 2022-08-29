@@ -47,10 +47,10 @@ function AlbumsPage() {
 
   let userCreate;
   if (!user) {
-   userCreate = ( <div>Sign up or log in in order to produce some songs</div>)
+   userCreate = ( <div>Sign up or log in in order to produce some albums</div>)
   }
   else {
-    userCreate = (<NavLink to={`/albums/create`}> Make a new song</NavLink>)
+    userCreate = (<NavLink to={`/albums/create`}> Make a new albums</NavLink>)
   }
 
   return (

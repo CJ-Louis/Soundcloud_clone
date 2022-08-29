@@ -68,12 +68,15 @@ const EditSongForm = () => {
       imageUrl,
       albumId,
     };
-    let editedSong = await dispatch(editSongForm(song.id, payload))
 
-    if (editedSong) {
-      history.push(`/songs/${song.id}`);
-    }
+    if (hasSubmitted){
+        let editedSong = await dispatch(editSongForm(song.id, payload))
+
+        if (editedSong) {
+        history.push(`/songs/${song.id}`);
+        }
   };
+}
 
   const handleCancelClick = (e) => {
     e.preventDefault();

@@ -38,6 +38,7 @@ export const retrieveAlbums = () => async dispatch => {
 
 
 export const createAlbum = (album) => async (dispatch) => {
+    if (!album.imageUrl) album.imageUrl = 'http://dalelyles.com/musicmp3s/no_cover.jpg'
     const response = await csrfFetch("/api/albums", {
       method: "POST",
       headers: { "Content-Type": 'application/json' },
@@ -50,7 +51,7 @@ export const createAlbum = (album) => async (dispatch) => {
   };
 
   export const editAlbumForm = (id, album) => async (dispatch) => {
-
+    if (!album.imageUrl) album.imageUrl = 'http://dalelyles.com/musicmp3s/no_cover.jpg'
     const response = await csrfFetch(`/api/albums/${id}`, {
         method: "PUT",
         headers: { "Content-Type": 'application/json' },
