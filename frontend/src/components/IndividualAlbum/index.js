@@ -29,7 +29,6 @@ function SingleAlbum() {
   const albumsSongs = songs.filter(song =>{
     return song.albumId == albumId
   })
-  console.log('This is albumSongs',albumsSongs)
 
   const songList = (songArr) => {
     console.log(songArr)
