@@ -5,4 +5,4 @@ This app was created using express and redux, and is being hosted on Heroku.
 
 ### Home page
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![This is an image](https://github.com/CJ-Louis/soundCloud_clone/blob/main/assets/snip-for-readme.png)
