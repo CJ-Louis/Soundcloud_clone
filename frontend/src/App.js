@@ -12,6 +12,7 @@ import AlbumCreator from './components/AlbumCreator';
 import EditAlbumForm from './components/EditAlbum';
 import * as sessionActions from "./store/session";
 import * as songActions from './store/songs'
+import * as albumActions from './store/albums'
 import Navigation from './components/Navigation';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -24,10 +25,14 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(songActions.retrieveSongs())
+    dispatch(albumActions.retrieveAlbums())
   }, [dispatch]);
 
   const songs = useSelector(state => {
     return state.songs.songlist;
+  });
+  const albums = useSelector(state => {
+    return state.albums.albumlist;
   });
 
   return (
@@ -54,13 +59,35 @@ function App() {
                 </NavLink>
                 <NavLink to={`/songs/${songs[5]?.id}`}>
                   <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 7' />
+
                 </NavLink>
+              </div>
+              <div className='homedisplayelements'>
+                <span >{songs[2]?.title}</span>
+                <span >{songs[3]?.title}</span>
+                <span >{songs[4]?.title}</span>
+                <span >{songs[5]?.title}</span>
               </div>
             </div>
 
             <div className='songlistdiv'>
-              <div className='hometext'>OR CHECK OUT SOME HOT ALBUMS!</div>
-              <NavLink to="/albums">SpoofCloud-Albums</NavLink>
+              <span className='hometext'>OR CHECK OUT SOME HOT ALBUMS!</span>
+              <div className='homedisplayelements'>
+                <NavLink to={`/albums/${albums[0]?.id}`}>
+                  <img className='songhomedisplay' src={albums[0]?.imageUrl} alt='Album 1' />
+                </NavLink>
+                <NavLink to={`/albums/${albums[1]?.id}`}>
+                  <img className='songhomedisplay' src={albums[1]?.imageUrl} alt='Album 2' />
+                </NavLink>
+                <NavLink to={`/albums/${albums[2]?.id}`}>
+                  <img className='songhomedisplay' src={albums[2]?.imageUrl} alt='Album 3' />
+                </NavLink>
+              </div>
+              <div className='homedisplayelements'>
+                <span >{albums[0]?.title}</span>
+                <span >{albums[1]?.title}</span>
+                <span >{albums[2]?.title}</span>
+              </div>
             </div>
             <div className='songplayer'></ div>
           </Route>

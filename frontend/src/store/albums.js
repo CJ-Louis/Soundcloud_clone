@@ -73,11 +73,11 @@ export const createAlbum = (album) => async (dispatch) => {
 
 const initialState = { albumlist: [] };
 
-// const sortList = (songlist) => {
-//     return songlist.sort((songA, songB) => {
-//       return songA.id - songB.id;
-//     }).map((song) => song.id);
-//   };
+const sortList = (albumlist) => {
+    return albumlist.sort((albumA, albumB) => {
+      return albumA.id - albumB.id;
+    })
+  };
 
 
 
@@ -93,7 +93,7 @@ const albumReducer = (state = initialState, action) => {
           return {
             ...allAlbums,
             ...state,
-            albumlist: action.albumlist
+            albumlist: sortList(action.albumlist)
           };
         case MAKE_ALBUMS:
           if (!state[action.album.id]){
@@ -103,7 +103,7 @@ const albumReducer = (state = initialState, action) => {
             }
             const albumList = newState.albumlist.map(id => newState[id])
             albumList.push(action.album)
-            newState.albumlist = albumList
+            newState.albumlist = sortList(albumList)
             return newState
           }
           return {
