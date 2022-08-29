@@ -42,16 +42,16 @@ function App() {
             <div>CLICK BELOW TO CHECKOUT SOME SONGS
               <div className='homedisplayelements'>
                 <NavLink to="/songs/4">
-                  <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 4' />
+                  <img className='songhomedisplay' src={songs[2]?.imageUrl} alt='Song 4' />
                 </NavLink>
                 <NavLink to="/songs/5">
-                  <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 5' />
+                  <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 5' />
                 </NavLink>
                 <NavLink to="/songs/6">
-                  <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 6' />
+                  <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 6' />
                 </NavLink>
                 <NavLink to="/songs/7">
-                  <img className='songhomedisplay' src={songs[6]?.imageUrl} alt='Song 7' />
+                  <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 7' />
                 </NavLink>
               </div>
             </div>
