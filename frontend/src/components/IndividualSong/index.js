@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import * as songActions from '../../store/songs'
+import playdasong from '../../SiteImages/playdasong.png'
 
 
 
@@ -48,11 +49,10 @@ function SingleSong({setPlayingSong}) {
    else if (user.id === song?.userId) {
    userOptions = (
       <div>
-        <p>Click here to
-            <NavLink to={`/songs/${song?.id}/edit`} song={song} >Edit</NavLink>
-        </p>
-        <button type="button" onClick={handleDelete}>Delete</button>
-        <div></div>
+        <i class="fa-solid fa-pencil">
+          <NavLink to={`/songs/${song?.id}/edit`} song={song} className='edittext' >Edit</NavLink>
+        </i>
+        <i className="fa-solid fa-trash" onClick={handleDelete}>Delete</i>
       </div>
     )
    } else {
@@ -67,23 +67,25 @@ function SingleSong({setPlayingSong}) {
   return (
     <div className="songlistdiv">
         <div className="topimg homie"></div>
-        <ul >
-            <li>
+        <ul className="songback">
+            <li className="songyboy">
 
-                <div><img src={song?.imageUrl}  alt='Song image not found' className="cover"/></div>
-                <span>Title: {song?.title}</span>
-                <p>     Description: {song?.description}</p>
-                <p>     By: {song?.userId}</p>
+                <div className="imageplace">
+                  <img src={song?.imageUrl}  alt='Song image not found' className="cover"/>
+                </div>
+                <span className="songtext title">{song?.title}</span>
 
-                <p> PLAY:
+                <p className="songtext artist">{song?.User.username}</p>
+                <p className="songtext description">{song?.description}</p>
+                <img className='playonsong' src={playdasong} alt='playbutton' onClick={listen}/>
+                {/* <p> PLAY:
                     <button onClick={listen}>
                         Play
                     </button>
-                </p>
+                </p> */}
             </li>
         </ul>
         {userOptions}
-        <NavLink to='/songs'>Back to Songs</NavLink>
     </div>
   );
 }

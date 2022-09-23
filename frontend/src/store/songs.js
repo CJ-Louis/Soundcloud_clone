@@ -29,7 +29,9 @@ const deleteSong = (song) => {
 
 export const retrieveSongs = () => async dispatch => {
         const response = await csrfFetch('/api/songs');
+        console.log('THIS IS THE RESPONSE', response)
         const data = await response.json();
+        console.log('THIS IS THE DATA', data)
         dispatch(getSongs(data.songs));
         return response;
       };

@@ -41,18 +41,18 @@ const EditSongForm = () => {
 
   useEffect(() => {
     const errors = [];
-    if (!title.length) errors.push("Song must have a title");
-    if (!description.length) errors.push("Song must have a description");
-    if (!url.length) errors.push("Song must have a audio link");
-    if (!url.includes('.mp3') && !url.includes(".wav") && !url.includes(".ogg")) errors.push("Url must end in .mp3, .wav or .ogg");
-    if (imageUrl && (!imageUrl.includes('.jpeg') && !imageUrl.includes('.jpg') && !imageUrl.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
+    if (!title?.length) errors.push("Song must have a title");
+    if (!description?.length) errors.push("Song must have a description");
+    if (!url?.length) errors.push("Song must have a audio link");
+    if (!url?.includes('.mp3') && !url?.includes(".wav") && !url?.includes(".ogg")) errors.push("Url must end in .mp3, .wav or .ogg");
+    if (imageUrl && (!imageUrl?.includes('.jpeg') && !imageUrl?.includes('.jpg') && !imageUrl?.includes('.png'))) errors.push("Image url must end in .jpeg, .jpg or .png (or this field may be left blank for a default)");
     const checkAlbums = (albumArr, id) => {
         let checkAlbums = albumArr.filter(album => {
             return album.id == id
         })
         return checkAlbums[0]
     }
-    if((albumId !== 'released as single' && albumId !== '') && (!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user.id)) errors.push("Please enter a valid album owned by you")
+    if((albumId !== 'released as single' && albumId !== '') && (!checkAlbums(albums, albumId) || checkAlbums(albums, albumId).userId != user?.id)) errors.push("Please enter a valid album owned by you")
     setErrors(errors);
     if (!errors[0]) setHasSubmitted(true)
   }, [title, description, url, imageUrl, albumId]);
@@ -89,7 +89,7 @@ const EditSongForm = () => {
         <span className='suntext'>Change is good!</span>
         {errors && (
                 <ul >
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                  {errors.map((error, idx) => <li className='li-boyz' key={idx}>{error}</li>)}
                 </ul>
         )}
       <form onSubmit={handleSubmit}>

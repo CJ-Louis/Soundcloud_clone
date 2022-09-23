@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
+    <ul className='blacksheep'>
       <li className='topbar'>
         <NavLink exact to="/" >
             <img className='logo' src={logo} alt='' />

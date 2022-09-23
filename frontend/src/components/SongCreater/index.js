@@ -81,7 +81,7 @@ const CreateSongForm = () => {
       <form onSubmit={handleSubmit} className="songlistdiv">
         {errors && (
                 <ul >
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                  {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
                 </ul>
         )}
         <input

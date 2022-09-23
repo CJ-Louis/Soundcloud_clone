@@ -15,6 +15,7 @@ import * as songActions from './store/songs'
 import * as albumActions from './store/albums'
 import Navigation from './components/Navigation';
 import AudioPlayer from 'react-h5-audio-player';
+import playdasong from './SiteImages/playdasong.png'
 import 'react-h5-audio-player/lib/styles.css';
 import './App.css'
 
@@ -26,7 +27,11 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(songActions.retrieveSongs())
     dispatch(albumActions.retrieveAlbums())
-  }, [dispatch]);
+  }, []);
+
+  const user = useSelector(state => {
+    return state.session.user;
+  })
 
   const songs = useSelector(state => {
     return state.songs.songlist;
@@ -35,44 +40,59 @@ function App() {
     return state.albums.albumlist;
   });
 
+  // if (!songs) return null
+
+
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path exact='/'>
-            <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
+            {!user && (<img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>)}
+            {user && (<div className="topimg homie"></div>)}
 
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
             <div className='songlistdiv' >
               <span className='hometext'>CLICK BELOW TO CHECKOUT SOME SONGS</span>
 
               <div className='homedisplayelements'>
-                <NavLink to={`/songs/${songs[2]?.id}`}>
-                  <img className='songhomedisplay' src={songs[2]?.imageUrl} alt='Song 4' />
-                </NavLink>
-                <NavLink to={`/songs/${songs[3]?.id}`}>
-                  <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 5' />
-                </NavLink>
-                <NavLink to={`/songs/${songs[4]?.id}`}>
-                  <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 6' />
-                </NavLink>
-                <NavLink to={`/songs/${songs[5]?.id}`}>
-                  <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 7' />
+                <div>
+                  <NavLink to={`/songs/${songs[2]?.id}`}>
+                    <img className='songhomedisplay' src={songs[2]?.imageUrl} alt='Song 4' />
+                  </NavLink>
+                  <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songs[2]?.url) }/>
+                  <span className='songtitle'>{songs[2]?.title}</span>
+                </div>
+                <div>
+                  <NavLink to={`/songs/${songs[3]?.id}`}>
+                    <img className='songhomedisplay' src={songs[3]?.imageUrl} alt='Song 5' />
+                  </NavLink>
+                  <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songs[3]?.url) }/>
+                  <span className='songtitle'>{songs[3]?.title}</span>
+                </div>
+                <div>
+                  <NavLink to={`/songs/${songs[4]?.id}`}>
+                    <img className='songhomedisplay' src={songs[4]?.imageUrl} alt='Song 6' />
+                  </NavLink>
+                  <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songs[4]?.url) }/>
+                  <span className='songtitle'>{songs[4]?.title}</span>
+                </div>
+                <div>
+                  <NavLink to={`/songs/${songs[5]?.id}`}>
+                    <img className='songhomedisplay' src={songs[5]?.imageUrl} alt='Song 7' />
+                  </NavLink>
+                  <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songs[5]?.url) }/>
+                  <span className='songtitle'>{songs[5]?.title}</span>
+                </div>
 
-                </NavLink>
-              </div>
-              <div className='homedisplayelements'>
-                <span >{songs[2]?.title}</span>
-                <span >{songs[3]?.title}</span>
-                <span >{songs[4]?.title}</span>
-                <span >{songs[5]?.title}</span>
               </div>
             </div>
 
             <div className='songlistdiv'>
-              <span className='hometext'>OR CHECK OUT SOME HOT ALBUMS!</span>
-              <div className='homedisplayelements'>
+              <span className='hometext' id='albumls'>OR CHECK OUT SOME HOT ALBUMS!</span>
+              <div className='homedisplayelements' id='albumls'>
                 <NavLink to={`/albums/${albums[0]?.id}`}>
                   <img className='songhomedisplay' src={albums[0]?.imageUrl} alt='Album 1' />
                 </NavLink>
@@ -83,11 +103,12 @@ function App() {
                   <img className='songhomedisplay' src={albums[2]?.imageUrl} alt='Album 3' />
                 </NavLink>
               </div>
-              <div className='homedisplayelements'>
+              <div className='homedisplayelements' id='albumls'>
                 <span >{albums[0]?.title}</span>
                 <span >{albums[1]?.title}</span>
                 <span >{albums[2]?.title}</span>
               </div>
+              <div className='filler'></div>
             </div>
             <div className='songplayer'></ div>
           </Route>
@@ -119,10 +140,10 @@ function App() {
             <AlbumsPage />
           </Route>
         </Switch>
-        
+
       )}
-      <div> </div>
-      <div> </div>
+      {/* <div> </div>
+      <div> </div> */}
       <div className='mediaplayer'>
         <AudioPlayer
           // autoPlay

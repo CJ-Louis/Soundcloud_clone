@@ -24,18 +24,16 @@ function SongsPage() {
     console.log(songArr)
     let list = songArr.map(song =>{
         return(
-        <li key={song.id}>
+        <li key={song.id} className='songcard'>
             <span>
                 <img className='imgs' src={song.imageUrl} alt='image not found' />
             </span>
-        <div></div>
-            <span>Title:
-                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+        <div>
+            <span>
+                <NavLink to={`/songs/${song.id}`} className='songlink'>{song.title}</NavLink>
             </span>
-            <p>     description: {song.description}</p>
-            <p>     By: {song.userId}</p>
-
             <p></p>
+        </div>
         </li>
         )
     })
@@ -52,17 +50,21 @@ function SongsPage() {
    userCreate = ( <div>Sign up or log in in order to produce some songs</div>)
   }
   else {
-    userCreate = (<NavLink to={`/songs/create`}> Make a new song</NavLink>)
+    userCreate = (<i class="fa-solid fa-cloud-arrow-up">
+      <NavLink to={`/songs/create`} className='edittext'> Make a new song</NavLink>
+      </i>)
+
   }
 
   return (
     <div className="songlistdiv">
         <div className="topimg homie"></div>
+        <h1>Top Songs</h1>
         <ul className="songs">
             {songList(songs)}
         </ul>
         <div>
-        <span>Add:
+        <span>
             {userCreate}
         </span>
         </div>

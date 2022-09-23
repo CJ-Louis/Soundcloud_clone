@@ -1,7 +1,11 @@
 /* TODO Add site wide styles */
 body{
-    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding-left: 175px;
     padding-right: 175px;
-    background-color: rgba(100, 205, 246, 0.308);
+    background-color: #f2f2f2;
+    margin: 0px;
 }
+/* #root{
+    background-color: white;
+} */

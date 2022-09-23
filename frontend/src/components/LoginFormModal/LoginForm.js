@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import signinboi from '../../SiteImages/signinboi.png'
 
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,33 +21,49 @@ function LoginForm() {
     );
   };
 
+  const demoUser = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    setCredential("Demo-lition")
+    setPassword("password")
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <div className="outerloginrim">
+      <img className="mascot" src={signinboi} />
+
+      <button className="demouser" onClick={demoUser}>Demo Account</button>
+
+      <form onSubmit={handleSubmit} className='loginmad'>
+      <h2>SIGN IN</h2>
+      <ul className="loginmad">
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li key={idx} className='logerr'>{error}</li>
         ))}
       </ul>
-      <label>
-        Username or Email
+      <label className="loginmad">
         <input
+        className="loginmad"
           type="text"
+          placeholder="Username or email..."
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
       </label>
-      <label>
-        Password
+      <label className="loginmad">
         <input
           type="password"
+          placeholder="Password..."
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" className="inbutton">Log In</button>
     </form>
+    </div>
+
   );
 }
 

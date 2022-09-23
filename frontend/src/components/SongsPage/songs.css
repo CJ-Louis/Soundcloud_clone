@@ -1,4 +1,122 @@
 .imgs{
-    width: 175px;
-    height: 175px;
+    width: 120px;
+    height: 120px;
+}
+.li-boyz{
+    font-weight:bolder;
+    display: flex;
+    color: rgba(241, 197, 51, 0.859);
+}
+.songcard{
+    /* border: 5px solid; */
+    border-right: -15px;
+    padding-top: 15px;
+    /* padding-bottom: 15px; */
+    padding-left: 15px;
+    margin-top: 15px;
+    /* margin-bottom: 15px; */
+    margin-right: 34px;
+    /* border-color: beige; */
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column wrap;
+    height: 32vmin;
+    width: 27vmin;
+    /* background: linear-gradient(90deg,
+    rgb(233, 219, 140) 0%,
+    hsla(206, 67%, 75%, 1) 100%); */
+    /* background-repeat: space;
+    background-size: cover; */
+    /* width: 100vw;
+    min-height: 100vh; */
+}
+
+.songlink{
+    text-decoration: none;
+    color: rgb(62, 62, 62);
+    font-size: small;
+}
+
+.songs{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.songyboy{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 1275px;
+}
+
+.songback{
+    /* border: 5px solid; */
+    display: flex;
+
+    max-width: 1273px;
+    height: 400px;
+    background: linear-gradient(90deg,
+    rgb(147, 136, 118) 0%,
+    hsla(206, 67%, 75%, 1) 100%);
+    background-repeat: space;
+    background-size: cover;
+}
+.cover{
+    /* display: flex;
+    justify-content: flex-end; */
+    position: relative;
+    /* left: 260%; */
+    top: 30px;
+    /* border-right: 200%; */
+
+    /* width: 300; */
+}
+.playonsong{
+    width: 75px;
+    position: relative;
+    bottom: 234px;
+    left: 400px;
+    cursor: pointer;
+}
+
+.songtext{
+    background-color: rgb(48, 48, 48);
+    color: white;
+    position: relative;
+    bottom: 100px;
+    left: 400px;
+}
+
+.title{
+    font-size: x-large;
+    left: 500px;
+}
+.artist{
+    font-size: large;
+    left: 500px;
+}
+.description{
+    font-size: small;
+}
+
+.fa-trash{
+    width: 50px;
+    position: relative;
+
+    /* display: flex;
+    justify-content: flex-end; */
+    bottom: 40px;
+    left:83%;
+    cursor: pointer;
+}
+
+.fa-pencil{
+    position: relative;
+    bottom: 40px;
+}
+
+.edittext{
+    text-decoration: none;
+    color: black;
 }
