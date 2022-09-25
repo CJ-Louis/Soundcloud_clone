@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as songActions from '../../store/songs'
+import playdasong from '../../SiteImages/playdasong.png'
 import './songs.css'
 
 
-function SongsPage() {
+function SongsPage({setPlayingSong}) {
   const dispatch = useDispatch();
 
   const songs = useSelector(state => {
@@ -26,7 +27,11 @@ function SongsPage() {
         return(
         <li key={song.id} className='songcard'>
             <span>
-                <img className='imgs' src={song.imageUrl} alt='image not found' />
+            <NavLink to={`/songs/${song.id}`}>
+              <img className='imgs' src={song.imageUrl} alt='image not found' />
+            </NavLink>
+
+                <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(song?.url) }/>
             </span>
         <div>
             <span>

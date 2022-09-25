@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import * as albumActions from '../../store/albums'
+import playdasong from '../../SiteImages/playdasong.png'
 
-
-function SingleAlbum() {
+function SingleAlbum({setPlayingSong}) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,21 +29,33 @@ function SingleAlbum() {
   const albumsSongs = songs.filter(song =>{
     return song.albumId == albumId
   })
-
+  let songnum = 0
   const songList = (songArr) => {
     console.log(songArr)
+
+
     let list = songArr.map(song =>{
+        songnum++
+        const albumListen = (e) => {
+          e.preventDefault()
+          setPlayingSong(song?.url)
+        }
         return(
-        <li key={song.id}>
+        <ul>
+        <li key={song.id} className='albumsongs' onClick={albumListen}>
             <span>
-                <img className='imgs' src={song.imageUrl} alt='image not found' />
+              <NavLink to={`/songs/${song.id}`}>
+                <img className='albumimgs' src={song.imageUrl} alt='image not found' />
+              </NavLink>
             </span>
-        <div></div>
-            <span>Title:
-                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+        <span className="songnumalbum">{songnum}</span>
+            <span>
+                <NavLink to={`/songs/${song.id}`} className='albumsongtext'>{song.title}</NavLink>
             </span>
             <p></p>
         </li>
+        </ul>
+
         )
     })
 
@@ -63,12 +75,20 @@ function SingleAlbum() {
    userOptions = ( <div />)
   }
   else if (user.id === album?.userId) {
+    /*
+          <div>
+        <i class="fa-solid fa-pencil">
+          <NavLink to={`/songs/${song?.id}/edit`} song={song} className='edittext' >Edit</NavLink>
+        </i>
+        <i className="fa-solid fa-trash" onClick={handleDelete}>Delete</i>
+      </div>
+    */
   userOptions = (
-     <div>
-       <p>Click here to
-           <NavLink to={`/albums/${album?.id}/edit`}>Edit</NavLink>
-       </p>
-       <button type="button" onClick={handleDelete}>Delete</button>
+     <div className="albumuserop">
+       <i class="fa-solid fa-pencil">
+           <NavLink to={`/albums/${album?.id}/edit`} className='edittext'>Edit</NavLink>
+       </i>
+       <i className="fa-solid fa-trash" onClick={handleDelete}>Delete</i>
        <div></div>
      </div>
    )
@@ -76,17 +96,32 @@ function SingleAlbum() {
      userOptions = (<div />)
   }
 
+  const listen = (e) => {
+    e.preventDefault()
+    setPlayingSong(albumsSongs[0]?.url)
+  }
+
+
   return (
-    <div className="songlistdiv">
+    <div className="albumlistdiv">
         <div className="topimg homie"></div>
-        <div><img src={album?.imageUrl}  alt='Album image not found' className="cover"/></div>
-                <span>Title: {album?.title}</span>
-                <p>     Description: {album?.description}</p>
-                <p>     By: {album?.userId}</p>
-                <p> Songs: </p>
-                {songList(albumsSongs)}
+        <ul className="songback">
+          <li className="songyboy">
+              <div className="imageplace" >
+          <img src={album?.imageUrl}  alt='Album image not found' className="cover"/>
+        </div>
+                <span className="songtext title">{album?.title}</span>
+                <p className="songtext artist">{album?.User.username}</p>
+                <p className="songtext description">{album?.description}</p>
+                <img className='playonsong' src={playdasong} alt='playbutton' onClick={listen}/>
+
+
+          </li>
+        </ul>
         {userOptions}
-        <NavLink to='/albums'>Back to Albums</NavLink>
+        {/* <p> Songs: </p> */}
+        {songList(albumsSongs)}
+
     </div>
   );
 }

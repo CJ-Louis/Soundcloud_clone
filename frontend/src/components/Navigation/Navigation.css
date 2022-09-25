@@ -1,9 +1,15 @@
 .profile-dropdown{
-    background-color: rgba(220, 150, 20, 0.803);
+    background-color: white;
+    border: 3px solid grey;
+    height: 42px;
     position: absolute;
     z-index: 2;
     right: 1px;
     top: 100px;
+    width: 100px;
+    /* display: flex;
+    flex-flow: column;
+    justify-content: center; */
 }
 .topbar{
     /* background-color: rgb(138, 43, 226, 0.4); */
@@ -14,6 +20,15 @@
 .user{
     margin-right: 10px;
     border: 10px
+}
+.userstats{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 41px;
+    width: 142px;
+    border: 1px solid grey;
+
 }
 .usersignup{
     background-color: orange;
@@ -44,6 +59,12 @@
 }
 .logout{
     z-index: 2;
+    background-color: orange;
+    color: white;
+    border: none;
+    position: relative;
+    right: 1px;
+    width: 140px;
 }
 .songslogo{
     position: relative;

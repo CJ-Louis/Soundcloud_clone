@@ -56,29 +56,35 @@ const CreateAlbumForm = () => {
         <div className="topimg homie"></div>
       <form onSubmit={handleSubmit} className='songlistdiv'>
       {errors && (
-                <ul >
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                <ul className='ul-allign'>
+                  {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
                 </ul>
         )}
+        <div className='editformdiv'>
         <input
+          className='thefield'
           type="string"
           placeholder="Title"
           required
           value={title}
           onChange={updateTitle} />
         <input
+          className='thefield'
           type="string"
           placeholder="Description"
           required
           value={description}
           onChange={updateDescription} />
         <input
+          className='thefield'
           type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImageUrl} />
-        <button type="submit">Post album to SpoofCloud</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='submitnew'>Create Album</button>
+        <button type="button" className='revertcan' onClick={handleCancelClick}>Cancel</button>
+        </div>
+
       </form>
     </section>
   );

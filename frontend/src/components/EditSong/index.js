@@ -85,45 +85,52 @@ const EditSongForm = () => {
     <section className="new-form-holder centered middled">
         <div className="topimg homie"></div>
         <div className='songlistdiv'>
-        <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
+        {/* <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' /> */}
         <span className='suntext'>Change is good!</span>
         {errors && (
-                <ul >
+                <ul className='ul-allign'>
                   {errors.map((error, idx) => <li className='li-boyz' key={idx}>{error}</li>)}
                 </ul>
         )}
       <form onSubmit={handleSubmit}>
-
+      <div className='editformdiv'>
         <input
+          className='thefield'
           type="string"
           placeholder="Title"
           required
           value={title}
           onChange={updateTitle} />
         <input
+          className='thefield'
           type="string"
           placeholder="Description"
           required
           value={description}
           onChange={updateDescription} />
         <input
+          className='thefield'
           type="text"
           placeholder="Audio Url"
           required
           value={url}
           onChange={updateUrl} />
         <input
+          className='thefield'
           type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImageUrl} />
         <input
+          className='thefield'
           type="text"
           placeholder="Album"
           value={albumId}
           onChange={updateAlbumId} />
-        <button type="submit">Edit song</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='submitnew'>Edit song</button>
+        <button type="button" className='revertcre' onClick={handleCancelClick}>Cancel</button>
+      </div>
+
       </form>
       </div>
     </section>

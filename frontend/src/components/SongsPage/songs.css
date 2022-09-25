@@ -1,11 +1,17 @@
 .imgs{
-    width: 120px;
-    height: 120px;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    z-index: 3;
+}
+.imgs:hover{
+    z-index: 1;
 }
 .li-boyz{
     font-weight:bolder;
     display: flex;
     color: rgba(241, 197, 51, 0.859);
+    justify-content: center;
 }
 .songcard{
     /* border: 5px solid; */
@@ -21,8 +27,8 @@
     display: flex;
     align-items: flex-start;
     flex-flow: column wrap;
-    height: 32vmin;
-    width: 27vmin;
+    height: 44vmin;
+    width: 26vmin;
     /* background: linear-gradient(90deg,
     rgb(233, 219, 140) 0%,
     hsla(206, 67%, 75%, 1) 100%); */
@@ -36,6 +42,8 @@
     text-decoration: none;
     color: rgb(62, 62, 62);
     font-size: small;
+    position: relative;
+    bottom: 40px;
 }
 
 .songs{
@@ -107,7 +115,7 @@
     /* display: flex;
     justify-content: flex-end; */
     bottom: 40px;
-    left:83%;
+    left: 380px;
     cursor: pointer;
 }
 
@@ -119,4 +127,121 @@
 .edittext{
     text-decoration: none;
     color: black;
+}
+
+.albumcard{
+    /* border: 5px solid; */
+    border-right: -15px;
+    padding-top: 15px;
+    /* padding-bottom: 15px; */
+    padding-left: 15px;
+    margin-top: 15px;
+    /* margin-bottom: 15px; */
+    margin-right: 34px;
+    /* border-color: beige; */
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column wrap;
+    height: 44vmin;
+    width: 27vmin;
+    /* background: linear-gradient(90deg,
+    rgb(233, 219, 140) 0%,
+    hsla(206, 67%, 75%, 1) 100%); */
+    /* background-repeat: space;
+    background-size: cover; */
+    /* width: 100vw;
+    min-height: 100vh; */
+}
+.editformdiv{
+    position: relative;
+    left: 400px;
+    background-color: white;
+    display: flex;
+    height: 500px;
+    width: 300px;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.thefield{
+    box-sizing: border-box;
+    height: 50px;
+    border-radius: 14px;
+    font-size: large;
+}
+.submitnew{
+    box-sizing: border-box;
+    border-radius: 9px;
+    height: 35px;
+    font-size: medium;
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+}
+
+.revertcan{
+    width: 60px;
+    border-style: none;
+    color: white;
+    background-color: black;
+    position: relative;
+    bottom: 35px;
+    cursor: pointer;
+}
+/* .ul-allign{
+    /* display: flex;
+    flex-flow: column;
+    /* align-items: center; */
+    /* position: relative;
+    padding-right: 30px;
+    left: 400px;
+    width: fit-content; */
+    /* border: 3px rgb(202, 11, 11) solid;
+} */
+
+.revertcre{
+    width: 60px;
+    border-style: none;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+.albumlink{
+    text-decoration: none;
+    color: rgb(62, 62, 62);
+    font-size: small;
+    position: relative;
+    bottom: 40px;
+}
+.albumuserop{
+    position: relative;
+    /* bottom: 100px; */
+    width: 460px;
+}
+.albumsongs{
+    display: flex;
+    border: 2px solid grey;
+}
+.albumsongs:hover{
+    background-color: grey;
+}
+.albumsongtext{
+    text-decoration: none;
+    position: relative;
+    top: 22px;
+    left: 150px;
+}
+.albumimgs{
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top: 2px;
+    left: 5px;
+}
+.songnumalbum{
+    position: relative;
+    top: 22px;
+    left: 30px;
 }

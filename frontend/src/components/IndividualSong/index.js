@@ -75,7 +75,7 @@ function SingleSong({setPlayingSong}) {
                 </div>
                 <span className="songtext title">{song?.title}</span>
 
-                <p className="songtext artist">{song?.User.username}</p>
+                <p className="songtext artist">{song?.User?.username}</p>
                 <p className="songtext description">{song?.description}</p>
                 <img className='playonsong' src={playdasong} alt='playbutton' onClick={listen}/>
                 {/* <p> PLAY:

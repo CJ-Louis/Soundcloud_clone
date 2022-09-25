@@ -125,7 +125,7 @@ function App() {
             <SingleSong setPlayingSong={setPlayingSong}/>
           </Route>
           <Route path="/songs">
-            <SongsPage />
+            <SongsPage setPlayingSong={setPlayingSong}/>
           </Route>
           <Route path="/albums/create">
             <AlbumCreator />
@@ -134,10 +134,10 @@ function App() {
             <EditAlbumForm />
           </Route>
           <Route path={`/albums/:albumId`}>
-            <SingleAlbum />
+            <SingleAlbum setPlayingSong={setPlayingSong}/>
           </Route>
           <Route path="/albums">
-            <AlbumsPage />
+            <AlbumsPage setPlayingSong={setPlayingSong}/>
           </Route>
         </Switch>
 

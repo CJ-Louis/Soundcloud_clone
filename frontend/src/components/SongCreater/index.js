@@ -80,40 +80,48 @@ const CreateSongForm = () => {
     <section className="new-form-holder centered middled">
       <form onSubmit={handleSubmit} className="songlistdiv">
         {errors && (
-                <ul >
+                <ul className='ul-allign'>
                   {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
                 </ul>
         )}
+        <div className='editformdiv'>
         <input
+          className='thefield'
           type="string"
           placeholder="Title"
           required
           value={title}
           onChange={updateTitle} />
         <input
+          className='thefield'
           type="string"
           placeholder="Description"
           required
           value={description}
           onChange={updateDescription} />
         <input
+          className='thefield'
           type="text"
           placeholder="Audio Url"
           required
           value={url}
           onChange={updateUrl} />
         <input
+          className='thefield'
           type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImageUrl} />
         <input
+          className='thefield'
           type="text"
           placeholder="Album"
           value={albumId}
           onChange={updateAlbumId} />
-        <button type="submit">Post song to SpoofCloud</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='submitnew'>Post Song</button>
+        <button type="button" className='revertcre' onClick={handleCancelClick}>Cancel</button>
+        </div>
+
       </form>
     </section>
     </div>

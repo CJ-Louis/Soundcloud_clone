@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as albumActions from '../../store/albums'
+import playdasong from '../../SiteImages/playdasong.png'
 
 
-function AlbumsPage() {
+function AlbumsPage({setPlayingSong}) {
   const dispatch = useDispatch();
 
   const albums = useSelector(state => {
@@ -13,6 +14,9 @@ function AlbumsPage() {
   const user = useSelector(state => {
     return state.session.user
   });
+  const songs = useSelector(state => {
+    return state.songs.songlist
+  })
 
   useEffect(() => {
     dispatch(albumActions.retrieveAlbums())
@@ -21,19 +25,27 @@ function AlbumsPage() {
   const albumList = (albumArr) => {
     console.log(albumArr)
     let list = albumArr.map(album =>{
-        return(
-        <li key={album.id}>
-            <span>
-                <img className='imgs' src={album.imageUrl} alt='image not found' />
-            </span>
-            <div></div>
-            <span>Title:
-                <NavLink to={`/albums/${album.id}`}>{album.title}</NavLink>
-            </span>
-            <p>     description: {album.description}</p>
-            <p>     By: {album.userId}</p>
+        let songInAlbum = songs.find(song => {
+          return song.albumId === album.id
+        })
 
-            <p></p>
+        return(
+        <li key={album.id} className='albumcard'>
+            <span>
+            <NavLink to={`/albums/${album.id}`}>
+              <img className='imgs' src={album.imageUrl} alt='image not found' />
+            </NavLink>
+
+
+                <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songInAlbum?.url) }/>
+            </span>
+            <div>
+              <span>
+                  <NavLink to={`/albums/${album.id}`} className='albumlink'>{album.title}</NavLink>
+              </span>
+              <p></p>
+            </div>
+
         </li>
         )
     })
@@ -50,17 +62,21 @@ function AlbumsPage() {
    userCreate = ( <div>Sign up or log in in order to produce some albums</div>)
   }
   else {
-    userCreate = (<NavLink to={`/albums/create`}> Make a new albums</NavLink>)
+    userCreate = (<i class="fa-solid fa-cloud-arrow-up">
+      <NavLink to={`/albums/create`} className='edittext'> New Album</NavLink>
+    </i>
+    )
   }
 
   return (
     <div className="songlistdiv">
         <div className="topimg homie"></div>
+        <h1>Top Albums</h1>
         <ul className="songs">
             {albumList(albums)}
         </ul>
         <div>
-        <span>Add:
+        <span>
             {userCreate}
         </span>
         </div>

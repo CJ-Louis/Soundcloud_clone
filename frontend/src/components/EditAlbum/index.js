@@ -64,42 +64,51 @@ const EditAlbumForm = () => {
   };
 
   return (
-    <section className="new-form-holder centered middled">
-        <div className="topimg homie"></div>
-        <div className='songlistdiv'>
-            <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
-            <span className='suntext'>Change is good!</span>
-                        {errors && (
-                <ul >
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-            )}
+      <div>
+      <div className="topimg homie"></div>
+      <section className="new-form-holder centered middled">
+
+        {/* <div className='songlistdiv'></div> */}
+            {/* <img className='editlogo' src='https://cdn4.vectorstock.com/i/thumb-large/45/68/happy-sun-hiding-behind-cloud-vector-1284568.jpg' />
+            <span className='suntext'>Change is good!</span> */}
 
 
-      <form onSubmit={handleSubmit} className='editingform songlistdiv'>
 
+      <form onSubmit={handleSubmit} className='songlistdiv'>
+        {errors && (
+          <ul className='ul-allign'>
+            {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
+          </ul>
+        )}
+        <div className='editformdiv'>
         <input
+          className='thefield'
           type="string"
           placeholder="Title"
           required
           value={title}
           onChange={updateTitle} />
         <input
+          className='thefield'
           type="string"
           placeholder="Description"
           required
           value={description}
           onChange={updateDescription} />
         <input
+          className='thefield'
           type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImageUrl} />
-        <button type="submit">Edit album</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='submitnew'>Edit album</button>
+        <button type="button" className='revertcan' onClick={handleCancelClick}>Cancel</button>
+        </div>
+
       </form>
-      </div>
+
     </section>
+    </div>
   );
 };
 

@@ -59,6 +59,7 @@
     /* display: flex; */
     position: relative;
     bottom: 116px;
+    /* height: fit-content; */
     /* z-index: -4; */
 
 }
@@ -112,4 +113,12 @@
 }
 div#root{
     z-index: -10;
+}
+.albumlistdiv{
+    background-color: azure;
+    min-width: 700px;
+    /* display: flex; */
+    position: relative;
+    bottom: 116px;
+    height: fit-content;
 }
