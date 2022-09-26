@@ -29,10 +29,10 @@
     /* flex-flow: column wrap; */
     height: 240px;
     /* height: 38vmin; */
-    width: 850px;
+    width: 873px;
     /* width: 26vmin; */
     border-bottom: 1px solid grey;
-    padding-top: 5px;
+    padding-top: 55px;
     /* background: linear-gradient(90deg,
     rgb(233, 219, 140) 0%,
     hsla(206, 67%, 75%, 1) 100%); */
@@ -168,37 +168,7 @@
 }
 
 .albumcard{
-    /* border: 5px solid;
-    border-right: -15px;
-    padding-top: 15px;
-    /* padding-bottom: 15px;
-    padding-left: 15px;
-    margin-top: 15px;
-    /* margin-bottom: 15px;
-    margin-right: 34px;
-    /* border-color: beige;
-    list-style: none;
-    display: flex;
-    align-items: flex-start;
-    flex-flow: column wrap;
-    height: 44vmin;
-    width: 27vmin; */
-    /* background: linear-gradient(90deg,
-    rgb(233, 219, 140) 0%,
-    hsla(206, 67%, 75%, 1) 100%); */
-    /* background-repeat: space;
-    background-size: cover; */
-    /* width: 100vw;
-    min-height: 100vh; */
-        /* border: 5px solid; */
-    /* border-right: -15px; */
-    /* padding-top: 15px; */
-    /* padding-bottom: 15px; */
-    /* padding-left: 76px; */
-    /* margin-top: 12px; */
-    /* margin-bottom: 15px; */
-    /* padding-right: 38px; */
-    /* border-color: beige; */
+
     list-style: none;
     display: flex;
     align-items: flex-start;
@@ -208,14 +178,8 @@
     width: fit-content;
     /* width: 26vmin; */
     border-bottom: 1px solid grey;
-    padding-top: 5px;
-    /* background: linear-gradient(90deg,
-    rgb(233, 219, 140) 0%,
-    hsla(206, 67%, 75%, 1) 100%); */
-    /* background-repeat: space;
-    background-size: cover; */
-    /* width: 100vw;
-    min-height: 100vh; */
+    padding-top: 55px;
+
 }
 .editformdiv{
     position: relative;
@@ -334,6 +298,11 @@ div.editformdiv{
     display: flex;
     /* justify-content: center; */
     width: 100%;
+    background: linear-gradient(180deg,
+    rgb(234, 198, 139) 0%,
+    hsla(206, 67%, 75%, 1) 100%);
+    background-repeat: space;
+    background-size: cover;
 }
 .ul-allign{
     display: flex;
@@ -343,5 +312,73 @@ div.editformdiv{
     align-items: center;
     position: relative;
     /* right: 3%; */
+    /* background-color: white; */
+}
+.shameless{
+    position: absolute;
+    height: 100%;
+    width: 400px;
+    z-index: 5;
     background-color: white;
+    border-left: 2px solid grey;
+    left: 913px;
+}
+
+.plug{
+    position: sticky;
+    height: 600px;
+    width: 260px;
+    border: 1px solid black;
+    background-color: grey;
+    top: 130px;
+    left: 75px;
+    margin-left: 75px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.maface{
+    width: 160px;
+    position: relative;
+    left: 50px;
+    top: 50px;
+    box-sizing: border-box;
+    border-radius: 40px;
+}
+.selfpat{
+    font-size: large;
+    /* position: relative;
+    left: 26px; */
+    display: flex;
+    justify-content: center;
+    width: 259px;
+    border-bottom: 1px solid rgb(100, 100, 100);
+}
+.github{
+    font-size: large;
+    position: relative;
+    top: 100px;
+    text-decoration: none;
+    font-size: small;
+    /* left: 26px; */
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+.gitlitlogo{
+    width: 100px;
+}
+.gitlittle{
+    text-decoration: none;
+    color: black;
+}
+form.songlistdiv{
+    /* background-color: aqua; */
+    background: linear-gradient(90deg,
+    rgb(165, 31, 31) 0%,
+    rgb(217, 77, 22) 100%);
+    background-repeat: space;
+    background-size: cover;
 }

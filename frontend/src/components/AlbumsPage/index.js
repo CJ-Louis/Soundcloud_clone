@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import * as albumActions from '../../store/albums'
 import playdasong from '../../SiteImages/playdasong.png'
 import wavform from '../../SiteImages/wavform.png'
+import maface from '../../SiteImages/maface.jpg'
+import gitlogo from '../../SiteImages/gitlogo.png'
+import linked from '../../SiteImages/linked.png'
 
 
 
@@ -75,6 +78,20 @@ function AlbumsPage({setPlayingSong}) {
 
   return (
     <div className="songlistdivsongs">
+      <div className="shameless">
+        <div className="plug">
+          <text className="selfpat">Here is our featured artist</text>
+          <img className='maface' src={maface} alt='CJ LEWIS' />
+          <NavLink to='my-git' className='github'>
+            <img className="gitlitlogo" src={gitlogo}/>
+            <p className="gitlittle">Click here to check out my github</p>
+          </NavLink>
+          <NavLink to='my-linked' className='github'>
+            <img className="gitlitlogo" src={linked}/>
+            <p className="gitlittle">Click here to check out my LinkedIn</p>
+          </NavLink>
+        </div>
+      </div>
         <div className="topimg homie"></div>
         <h1 className="songtop">Top Albums</h1>
         <ul className="songs">
@@ -85,7 +102,6 @@ function AlbumsPage({setPlayingSong}) {
             {/* {userCreate} */}
         </span>
         </div>
-        <div className='filler'></div>
     </div>
   );
 }

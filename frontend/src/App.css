@@ -2,13 +2,14 @@
     font-size: x-large;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* margin-left: 175px;
     margin-right: 175px; */
     position: relative;
     height: 75px;
     background-color: white;
-    bottom: 116px;
+    bottom: 80px;
 }
 .topimg{
     width: 100%;
@@ -142,4 +143,13 @@ div#root{
 }
 .appalbumset{
     width: 175px;
+}
+.togit{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+.gitlogo{
+    width: 500px;
 }

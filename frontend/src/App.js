@@ -16,6 +16,9 @@ import * as albumActions from './store/albums'
 import Navigation from './components/Navigation';
 import AudioPlayer from 'react-h5-audio-player';
 import playdasong from './SiteImages/playdasong.png'
+import gitlogo from './SiteImages/gitlogo.png'
+import linked from './SiteImages/linked.png'
+
 import 'react-h5-audio-player/lib/styles.css';
 import './App.css'
 
@@ -53,7 +56,7 @@ function App() {
             {!user && (
               <div>
               <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
-              <span className='community'>Hear what's trending in the SpoofCloud Community</span>
+              {/* <span className='community'>Hear what's trending in the SpoofCloud Community</span> */}
 
               </div>
             )}
@@ -155,6 +158,24 @@ function App() {
           <Route path="/albums">
             <AlbumsPage setPlayingSong={setPlayingSong}/>
           </Route>
+          <Route path='/my-git' component={() => {
+              window.location.href = 'https://github.com/CJ-Louis';
+              return (
+                <div className='togit'>
+                  <h1>Redirecting You To Github</h1>
+                  <img src={gitlogo} alt='git-logo' className='gitlogo'/>
+                </div>
+              );
+            }}/>
+            <Route path='/my-linked' component={() => {
+              window.location.href = 'https://www.linkedin.com/in/christopher-lewis-aa9966240/';
+              return (
+                <div className='togit'>
+                  <h1>Redirecting You To LinkedIn</h1>
+                  <img src={linked} alt='linked-logo' className='gitlogo'/>
+                </div>
+              );
+            }}/>
         </Switch>
 
       )}
