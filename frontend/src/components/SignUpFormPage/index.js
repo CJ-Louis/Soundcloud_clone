@@ -20,15 +20,17 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors([]);
-      return dispatch(sessionActions.signup({ email, firstName, lastName, username, password }))
+    let error = []
+    if (!email.includes('@')) error.push('Please Provide a valid email')
+    if (password === confirmPassword) error.push('Confirm Password field must be the same as the Password field');
+    if (!error[0]) {
+        return dispatch(sessionActions.signup({ email, firstName, lastName, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    setErrors(error)
   };
 
   return (
