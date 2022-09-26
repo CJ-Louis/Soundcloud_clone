@@ -62,7 +62,8 @@
 }
 .songlistdiv{
     /* background-color: azure; */
-    min-width: 700px;
+    min-width: 800px;
+    max-width: 1400px;
     background-color: white;
     /* display: flex; */
     /* position: relative; */
@@ -134,6 +135,7 @@ div#root{
 }
 .frontalbumtitle{
     position: relative;
+    z-index: 1;
     /* top: 30px;
     right: 150px; */
 }

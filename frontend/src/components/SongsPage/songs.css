@@ -85,7 +85,7 @@
     bottom: 182px;
     display: flex;
 
-    max-width: 1273px;
+    max-width: 1313px;
     height: 400px;
     background: linear-gradient(90deg,
     rgb(147, 136, 118) 0%,
@@ -298,6 +298,8 @@ div.editformdiv{
     display: flex;
     /* justify-content: center; */
     width: 100%;
+    position: relative;
+    bottom: 36px;
     background: linear-gradient(180deg,
     rgb(234, 198, 139) 0%,
     hsla(206, 67%, 75%, 1) 100%);
@@ -374,11 +376,23 @@ div.editformdiv{
     text-decoration: none;
     color: black;
 }
-form.songlistdiv{
+ul.ul-allign{
     /* background-color: aqua; */
+    position: relative;
+    bottom: 36px;
+    /* height: 40px; */
     background: linear-gradient(90deg,
     rgb(165, 31, 31) 0%,
     rgb(217, 77, 22) 100%);
     background-repeat: space;
     background-size: cover;
+    width: 96.95%;
+    margin: 0px;
+}
+.happcloud{
+    background: rgb(234, 198, 139)
+
+}
+.songyboy{
+    max-width: 1313px;
 }

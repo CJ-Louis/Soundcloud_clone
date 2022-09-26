@@ -32,7 +32,7 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='songlistdiv' >
+    <form onSubmit={handleSubmit} className='happcloud' >
       <div className="topimg homie"></div>
       <span className="hometext signupheader">Please Enter Your info below</span>
       <div className="cloudallign">
