@@ -53,6 +53,7 @@ function LoginForm() {
       </label>
       <label className="loginmad">
         <input
+          className="loginmad"
           type="password"
           placeholder="Password..."
           value={password}

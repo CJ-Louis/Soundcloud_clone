@@ -50,7 +50,13 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path exact='/'>
-            {!user && (<img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>)}
+            {!user && (
+              <div>
+              <img  src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='Top img' className='topimg'></img>
+              <span className='community'>Hear what's trending in the SpoofCloud Community</span>
+
+              </div>
+            )}
             {user && (<div className="topimg homie"></div>)}
 
             <span className='community'>Hear what's trending in the SpoofCloud Community</span>
@@ -91,26 +97,36 @@ function App() {
             </div>
 
             <div className='songlistdiv'>
-              <span className='hometext' id='albumls'>OR CHECK OUT SOME HOT ALBUMS!</span>
+              <span className='hometext' id='albumls'>OR CHECK OUT SOME HOT ALBUMS</span>
               <div className='homedisplayelements' id='albumls'>
+                <div className='appalbumset'>
                 <NavLink to={`/albums/${albums[0]?.id}`}>
-                  <img className='songhomedisplay' src={albums[0]?.imageUrl} alt='Album 1' />
+                  <img className='albumhomedisplay' src={albums[0]?.imageUrl} alt='Album 1' />
                 </NavLink>
+                <span className='frontalbumtitle'>{albums[0]?.title}</span>
+                </div>
+                <div className='appalbumset'>
                 <NavLink to={`/albums/${albums[1]?.id}`}>
-                  <img className='songhomedisplay' src={albums[1]?.imageUrl} alt='Album 2' />
+                  <img className='albumhomedisplay' src={albums[1]?.imageUrl} alt='Album 2' />
                 </NavLink>
+                <span className='frontalbumtitle'>{albums[1]?.title}</span>
+                </div>
+                <div className='appalbumset'>
                 <NavLink to={`/albums/${albums[2]?.id}`}>
-                  <img className='songhomedisplay' src={albums[2]?.imageUrl} alt='Album 3' />
+                  <img className='albumhomedisplay' src={albums[2]?.imageUrl} alt='Album 3' />
                 </NavLink>
+                <span className='frontalbumtitle'>{albums[2]?.title}</span>
+                </div>
+
               </div>
-              <div className='homedisplayelements' id='albumls'>
-                <span >{albums[0]?.title}</span>
-                <span >{albums[1]?.title}</span>
-                <span >{albums[2]?.title}</span>
-              </div>
+              {/* <div className='homedisplayelements' id='albumls'> */}
+
+
+
+              {/* </div> */}
               <div className='filler'></div>
             </div>
-            <div className='songplayer'></ div>
+            {/* <div className='songplayer'></ div> */}
           </Route>
           <Route path="/signup">
             <SignupFormPage />

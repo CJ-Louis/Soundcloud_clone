@@ -35,66 +35,80 @@ function SignupFormPage() {
     <form onSubmit={handleSubmit} className='songlistdiv' >
       <div className="topimg homie"></div>
       <span className="hometext signupheader">Please Enter Your info below</span>
-      <img className='signuplogo' src="https://us.123rf.com/450wm/yupiramos/yupiramos1705/yupiramos170517378/78078187-kawaii-wolkenikone-%C3%BCber-wei%C3%9Fem-hintergrund-buntes-design-vektor-illustration.jpg?ver=6" />
-      <span className="cloudtext">Welcome! Good to have ya!</span>
-      <ul >
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      <div className="cloudallign">
+        <img className='signuplogo' src="https://us.123rf.com/450wm/yupiramos/yupiramos1705/yupiramos170517378/78078187-kawaii-wolkenikone-%C3%BCber-wei%C3%9Fem-hintergrund-buntes-design-vektor-illustration.jpg?ver=6" />
+      </div>
+      <div className="cloudallign">
+        <span className="cloudtext">Welcome! Good to have ya!</span>
+      </div>
+      <ul className='ul-allign'>
+        {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
       </ul>
+      <div className='editformdiv'>
       <label>
-        Email
         <input
+          className='thefield'
           type="text"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
       <label>
-        First Name
         <input
+          className='thefield'
           type="text"
+          placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
       </label>
       <label>
-        Last Name
         <input
+          className='thefield'
           type="text"
+          placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
       </label>
       <label>
-        Username
         <input
+          className='thefield'
           type="text"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
       <label>
-        Password
         <input
+          className='thefield'
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
       <label>
-        Confirm Password
         <input
+          className='thefield'
           type="password"
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button type="submit" className='submitnew'>Sign Up</button>
+
+      </div>
+
     </form>
   );
 }

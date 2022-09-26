@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as albumActions from '../../store/albums'
 import playdasong from '../../SiteImages/playdasong.png'
+import wavform from '../../SiteImages/wavform.png'
+
 
 
 function AlbumsPage({setPlayingSong}) {
@@ -43,7 +45,10 @@ function AlbumsPage({setPlayingSong}) {
               <span>
                   <NavLink to={`/albums/${album.id}`} className='albumlink'>{album.title}</NavLink>
               </span>
-              <p></p>
+              <p className="artisttxt">
+                {songInAlbum?.User.username}
+              </p>
+              <img className="wavform" src={wavform} alt="wavform" />
             </div>
 
         </li>
@@ -69,17 +74,18 @@ function AlbumsPage({setPlayingSong}) {
   }
 
   return (
-    <div className="songlistdiv">
+    <div className="songlistdivsongs">
         <div className="topimg homie"></div>
-        <h1>Top Albums</h1>
+        <h1 className="songtop">Top Albums</h1>
         <ul className="songs">
             {albumList(albums)}
         </ul>
         <div>
         <span>
-            {userCreate}
+            {/* {userCreate} */}
         </span>
         </div>
+        <div className='filler'></div>
     </div>
   );
 }

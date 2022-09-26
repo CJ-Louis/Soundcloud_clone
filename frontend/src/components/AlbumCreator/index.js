@@ -53,8 +53,8 @@ const CreateAlbumForm = () => {
 
   return (
     <section className="new-form-holder centered middled">
-        <div className="topimg homie"></div>
-      <form onSubmit={handleSubmit} className='songlistdiv'>
+        {/* <div className="topimg homie"></div> */}
+      <form onSubmit={handleSubmit} className='songlistdiv' id='editsonglistdiv'>
       {errors && (
                 <ul className='ul-allign'>
                   {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}

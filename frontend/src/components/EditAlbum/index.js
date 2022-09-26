@@ -65,7 +65,7 @@ const EditAlbumForm = () => {
 
   return (
       <div>
-      <div className="topimg homie"></div>
+      {/* <div className="topimg homie"></div> */}
       <section className="new-form-holder centered middled">
 
         {/* <div className='songlistdiv'></div> */}

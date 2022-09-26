@@ -76,7 +76,7 @@ const CreateSongForm = () => {
 
   return (
     <div>
-    <div className="topimg homie"></div>
+    {/* <div className="topimg homie"></div> */}
     <section className="new-form-holder centered middled">
       <form onSubmit={handleSubmit} className="songlistdiv">
         {errors && (

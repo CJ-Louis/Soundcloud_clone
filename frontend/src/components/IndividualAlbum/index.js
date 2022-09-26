@@ -85,10 +85,10 @@ function SingleAlbum({setPlayingSong}) {
     */
   userOptions = (
      <div className="albumuserop">
-       <i class="fa-solid fa-pencil">
+       <i class="fa-solid fa-pencil" id="albumpencil">
            <NavLink to={`/albums/${album?.id}/edit`} className='edittext'>Edit</NavLink>
        </i>
-       <i className="fa-solid fa-trash" onClick={handleDelete}>Delete</i>
+       <i className="fa-solid fa-trash" id="albumpencil" onClick={handleDelete}>Delete</i>
        <div></div>
      </div>
    )
@@ -105,7 +105,7 @@ function SingleAlbum({setPlayingSong}) {
   return (
     <div className="albumlistdiv">
         <div className="topimg homie"></div>
-        <ul className="songback">
+        <ul className="albumback">
           <li className="songyboy">
               <div className="imageplace" >
           <img src={album?.imageUrl}  alt='Album image not found' className="cover"/>

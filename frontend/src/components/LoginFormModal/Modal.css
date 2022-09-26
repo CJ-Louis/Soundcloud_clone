@@ -28,6 +28,10 @@ label.loginmad{
     display: flex;
     justify-content: space-evenly;
     width: 580px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 40px;
+    /* border: 5px solid black; */
 }
 .inbutton{
     background-color: orange;
@@ -68,4 +72,8 @@ label.loginmad{
 }
 .themodalcomp{
     z-index: 10;
+}
+input.loginmad{
+    box-sizing: border-box;
+    border-radius: 5px;
 }
