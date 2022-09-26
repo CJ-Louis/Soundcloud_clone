@@ -9,6 +9,8 @@
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
     width: max-content;
     height: max-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #modal-content{
