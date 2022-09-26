@@ -390,7 +390,9 @@ ul.ul-allign{
     margin: 0px;
 }
 .happcloud{
-    background: rgb(234, 198, 139)
+    background: rgb(234, 198, 139);
+    position: relative;
+    bottom: 36px;
 
 }
 .songyboy{

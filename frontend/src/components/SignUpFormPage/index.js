@@ -44,7 +44,7 @@ function SignupFormPage() {
       <ul className='ul-allign'>
         {errors.map((error, idx) => <li key={idx} className='li-boyz'>{error}</li>)}
       </ul>
-      <div className='editformdiv'>
+      <div className='editformdiv' id="signerup">
       <label>
         <input
           className='thefield'
