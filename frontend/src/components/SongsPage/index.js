@@ -42,7 +42,7 @@ function SongsPage({setPlayingSong}) {
                 <NavLink to={`/songs/${song.id}`} className='songlink'>{song.title}</NavLink>
             </span>
             <p className="artisttxt">
-              {song?.User?.username}
+              {song?.User.username}
             </p>
             <img className="wavform" src={wavform} alt="wavform" />
         </div>

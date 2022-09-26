@@ -260,6 +260,7 @@
 .albumsongtext{
     text-decoration: none;
     position: relative;
+    color: black;
     top: 22px;
     left: 150px;
 }

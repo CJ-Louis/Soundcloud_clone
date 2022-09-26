@@ -23,6 +23,9 @@ function SingleSong({setPlayingSong}) {
   const song = useSelector(state => {
     return state.songs[songId]
   });
+  const songArr = useSelector(state => {
+    return state.songs.songlist
+  })
   const user = useSelector(state => {
     return state.session.user
   });
@@ -33,8 +36,12 @@ function SingleSong({setPlayingSong}) {
   }
 
 
-
-
+  let songArtist = songArr.find(onesong => {
+    return onesong.id === song.id
+  })
+  console.log('THIS IS SONG ARTIST ', songArtist)
+  songArtist = songArtist?.User?.username
+  console.log('THIS IS SONG ARTIST ', songArtist)
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(songActions.songDeleter(song.id))
@@ -75,7 +82,7 @@ function SingleSong({setPlayingSong}) {
                 </div>
                 <span className="songtext title">{song?.title}</span>
 
-                <p className="songtext artist">{song?.User?.username}</p>
+                <p className="songtext artist">{songArtist}</p>
                 <p className="songtext description">{song?.description}</p>
                 <img className='playonsong' src={playdasong} alt='playbutton' onClick={listen}/>
                 {/* <p> PLAY:

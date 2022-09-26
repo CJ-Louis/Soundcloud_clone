@@ -40,8 +40,6 @@ function AlbumsPage({setPlayingSong}) {
             <NavLink to={`/albums/${album.id}`}>
               <img className='imgs' src={album.imageUrl} alt='image not found' />
             </NavLink>
-
-
                 <img className='playbutton' src={playdasong} alt='playbutton' onClick={(e) => setPlayingSong(songInAlbum?.url) }/>
             </span>
             <div>
