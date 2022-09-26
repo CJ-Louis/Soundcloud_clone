@@ -46,12 +46,12 @@
 
 }
 .usersignup{
-    background-color: rgb(209, 140, 13);
+    background-color: rgb(244, 138, 0);
     text-decoration: none;
     display: flex;
     justify-content: center;
     color: white;
-    border-radius: 3px;
+    border-radius: 9px;
     height: 25px;
     display: flex;
     margin-left: 15px;
